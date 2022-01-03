@@ -16,7 +16,7 @@ class ApiLoginController extends AbstractController
 {
              if (null === $user) {
                  return $this->json([
-                         'message' => 'missing credentials',
+                         'message' => 'erreur de connexion',
                      ], Response::HTTP_UNAUTHORIZED);
          }
          $token = 1; // somehow create an API token for $user

@@ -3,11 +3,6 @@ index:
     methods: ["GET"]
     controller: App\Controller\DefaultController::index
 
-bonjour:
-    path: /bonjour/{prenom}
-    methods: ["GET"]
-    controller: App\Controller\DefaultController::bonjour
-
 login :
     path: /login
     methods: ["GET", "POST"]

@@ -62,9 +62,9 @@ class Rent
     private $representative_validated_at;
 
     /**
-     * @ORM\OneToOne(targetEntity=Residence::class, cascade={"persist", "remove"})
+     * @ORM\ManyToOne (targetEntity=Residence::class, cascade={"persist", "remove"})
      */
-    private $relation;
+    private $relations;
 
     /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="relation")
@@ -184,14 +184,14 @@ class Rent
         return $this;
     }
 
-    public function getRelation(): ?Residence
+    public function getRelations(): ?Residence
     {
-        return $this->relation;
+        return $this->relations;
     }
 
-    public function setRelation(?Residence $relation): self
+    public function setRelations(?Residence $relations): self
     {
-        $this->relation = $relation;
+        $this->relations = $relations;
 
         return $this;
     }
