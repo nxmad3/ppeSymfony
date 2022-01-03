@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../cours-08-11/.idea/cours-08-11.iml" filepath="$PROJECT_DIR$/../cours-08-11/.idea/cours-08-11.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/projetSymmfony.iml" filepath="$PROJECT_DIR$/.idea/projetSymmfony.iml" />
+      <module fileurl="file://$USER_HOME$/PhpstormProjects/testFront/.idea/testFront.iml" filepath="$USER_HOME$/PhpstormProjects/testFront/.idea/testFront.iml" />
     </modules>
   </component>
 </project>

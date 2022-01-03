@@ -8,7 +8,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class RentFixture extends fixture implements DependentFixtureInterface
+class RentFixture extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -18,8 +18,8 @@ class RentFixture extends fixture implements DependentFixtureInterface
         $date->setTimestamp($timestamp);
 
         $rent = new Rent();
-        $rent->setTenantId($this->getReference('user-'.rand(5,7)));
-        $rent->setResidenceId($this->getReference('residence-'.rand(1,5)));
+        $rent->setTenantId($this->getReference('user-' . rand(5, 7)));
+        $rent->setResidenceId($this->getReference('residence-' . rand(1, 5)));
         $rent->setInventoryFile("test");
         $rent->setArrivalDate(new \DateTime());
         $rent->setDepartureDate(new \DateTime());
@@ -33,6 +33,7 @@ class RentFixture extends fixture implements DependentFixtureInterface
         $manager->persist($rent);
         $manager->flush();
     }
+
     public function getDependencies(): array
     {
         return [
