@@ -1,0 +1,50 @@
+{% block body %}
+    <head>
+        <script src="https://kit.fontawesome.com/a7749f8008.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body style="margin: 0">
+    <nav style="background-color: maroon">
+        <li>
+            <button style="background-color: white;margin-top: 2%; margin-bottom: 2%; width: 10%; padding-top: 1%;padding-bottom: 1%">
+                Logo
+            </button>
+            <a style="color: white; margin-left: 5%" style="text-decoration: none">ACCUEIL</a>
+        </li>
+    </nav>
+    <div style="margin: 0">
+        <h1 style="margin-top: 3%;margin-bottom: 2%; margin-left: 5%">Connectez-vous</h1>
+        <form action="{{ path('login') }}" style="margin-left: 5%" method="post">
+            <div class="mb-4">
+                <label for="username" class="form-label">Email</label>
+                <input type="text" id="username" style="width: 50%" class="form-control" name="_username"
+                       value="{{ last_username }}"/>
+            </div>
+            <div class="mb-4">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" style="width: 50%" id="password" name="_password"/>
+                <input type="hidden" class="form-control" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+            </div>
+            <button type="submit" class="btn btn-success">Connexion</button>
+            <a href="reset-password">mot de passe oublie?</a>
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+        </form>
+        <footer>
+            <section
+                    style="background-color: black; margin-top: 10%; margin-left: 0%; padding-top: 2%;padding-bottom: 4%">
+                <p style="float: right; color: #FFFFFF;margin-right: 3%">version 1.0</p>
+                <p style="color: #FFFFFF; margin-left: 5%">Gestion locative</p>
+                <p style="color: #FFFFFF; margin-left: 5%">Contact téléphone : 06 06 06 06 06 </p>
+                <p style="color: #FFFFFF; margin-left: 5%">Contact email : contact@gestionlocative.fr</p>
+
+            </section>
+        </footer>
+    </div>
+
+
+    </body>
+
+{% endblock %}
