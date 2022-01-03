@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e25935ca-0c6f-41d7-b872-1844cd4651cf" name="Changes" comment="datafixture">
-      <change afterPath="$PROJECT_DIR$/src/Entity/Rent.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/Residence.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/projetSymmfony.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/projetSymmfony.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/RentFixture.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/RentFixture.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/ResidenceFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/ResidenceFixtures.php" afterDir="false" />
+    <list default="true" id="e25935ca-0c6f-41d7-b872-1844cd4651cf" name="Changes" comment="mise à jour des fixture (ajout du mots de passe hasher)&#10;&#10;ajout du user avec mot de passe hasher">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/UserFixtures.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +140,7 @@
       <workItem from="1641153236505" duration="953000" />
       <workItem from="1641154210233" duration="541000" />
       <workItem from="1641154778153" duration="3986000" />
-      <workItem from="1641196436743" duration="18068000" />
+      <workItem from="1641196436743" duration="20690000" />
     </task>
     <task id="LOCAL-00001" summary="projet">
       <created>1641125682088</created>
@@ -168,7 +156,21 @@
       <option name="project" value="LOCAL" />
       <updated>1641158504541</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="mise à jour des fixture (ajout du mots de passe hasher)&#10;&#10;ajout du user avec mot de passe hasher">
+      <created>1641221843411</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1641221843411</updated>
+    </task>
+    <task id="LOCAL-00004" summary="mise à jour des fixture (ajout du mots de passe hasher)&#10;&#10;ajout du user avec mot de passe hasher">
+      <created>1641221855888</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1641221855888</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -185,7 +187,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/prxph3te" />
+                        <option value="origin/Yuki" />
                       </list>
                     </value>
                   </entry>
@@ -200,7 +202,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="projet" />
     <MESSAGE value="datafixture" />
-    <option name="LAST_COMMIT_MESSAGE" value="datafixture" />
+    <MESSAGE value="mise à jour des fixture (ajout du mots de passe hasher)&#10;&#10;ajout du user avec mot de passe hasher" />
+    <option name="LAST_COMMIT_MESSAGE" value="mise à jour des fixture (ajout du mots de passe hasher)&#10;&#10;ajout du user avec mot de passe hasher" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
