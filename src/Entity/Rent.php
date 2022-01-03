@@ -5,74 +5,76 @@ namespace App\Entity;
 use App\Repository\RentRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Entity(repositoryClass: RentRepository::class)]
+/**
+ * @ORM\Entity(repositoryClass=RentRepository::class)
+ */
 class Rent
 {
-    #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column(type: 'integer')]
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
     private $id;
 
-    #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
-    private $tenant;
-
-    #[ORM\OneToOne(targetEntity: Residence::class, cascade: ['persist', 'remove'])]
-    private $residence;
-
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $inventory_file;
-
-    #[ORM\Column(type: 'datetime')]
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private $arrival_date;
 
-    #[ORM\Column(type: 'datetime')]
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private $departure_date;
 
-    #[ORM\Column(type: 'text')]
-    private $tenant_cillents;
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $tenant_comments;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $tenant_signature;
 
-    #[ORM\Column(type: 'string', length: 45)]
+    /**
+     * @ORM\Column(type="string", length=45)
+     */
     private $tenant_validated_at;
 
-    #[ORM\Column(type: 'text')]
-    private $represntative_comments;
+    /**
+     * @ORM\Column(type="text")
+     */
+    private $representative_comments;
 
-    #[ORM\Column(type: 'string', length: 255)]
-    private $represntative_signature;
+    /**
+     * @ORM\Column(type="string", length=266)
+     */
+    private $representative_signature;
 
-    #[ORM\Column(type: 'datetime')]
-    private $represntative_validated_at;
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $representative_validated_at;
+
+    /**
+     * @ORM\ManyToOne (targetEntity=Residence::class, cascade={"persist", "remove"})
+     */
+    private $relations;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="relation")
+     */
+    private $Rents;
+
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTenantId(): ?User
-    {
-        return $this->tenant_id;
-    }
-
-    public function setTenantId(?User $tenant): self
-    {
-        $this->tenant_id = $tenant;
-
-        return $this;
-    }
-
-    public function getResidenceId(): ?Residence
-    {
-        return $this->residence_id;
-    }
-
-    public function setResidenceId(?Residence $residence): self
-    {
-        $this->residence_id = $residence;
-
-        return $this;
     }
 
     public function getInventoryFile(): ?string
@@ -86,7 +88,6 @@ class Rent
 
         return $this;
     }
-
     public function getArrivalDate(): ?\DateTimeInterface
     {
         return $this->arrival_date;
@@ -111,14 +112,14 @@ class Rent
         return $this;
     }
 
-    public function getTenantCillents(): ?string
+    public function getTenantComments(): ?string
     {
-        return $this->tenant_cillents;
+        return $this->tenant_comments;
     }
 
-    public function setTenantCillents(string $tenant_cillents): self
+    public function setTenantComments(string $tenant_comments): self
     {
-        $this->tenant_cillents = $tenant_cillents;
+        $this->tenant_comments = $tenant_comments;
 
         return $this;
     }
@@ -147,38 +148,62 @@ class Rent
         return $this;
     }
 
-    public function getRepresntativeComments(): ?string
+    public function getRepresentativeComments(): ?string
     {
-        return $this->represntative_comments;
+        return $this->representative_comments;
     }
 
-    public function setRepresntativeComments(string $represntative_comments): self
+    public function setRepresentativeComments(string $representative_comments): self
     {
-        $this->represntative_comments = $represntative_comments;
+        $this->representative_comments = $representative_comments;
 
         return $this;
     }
 
-    public function getRepresntativeSignature(): ?string
+    public function getRepresentativeSignature(): ?string
     {
-        return $this->represntative_signature;
+        return $this->representative_signature;
     }
 
-    public function setRepresntativeSignature(string $represntative_signature): self
+    public function setRepresentativeSignature(string $representative_signature): self
     {
-        $this->represntative_signature = $represntative_signature;
+        $this->representative_signature = $representative_signature;
 
         return $this;
     }
 
-    public function getRepresntativeValidatedAt(): ?\DateTimeInterface
+    public function getRepresentativeValidatedAt(): ?\DateTimeInterface
     {
-        return $this->represntative_validated_at;
+        return $this->representative_validated_at;
     }
 
-    public function setRepresntativeValidatedAt(\DateTimeInterface $represntative_validated_at): self
+    public function setRepresentativeValidatedAt(\DateTimeInterface $representative_validated_at): self
     {
-        $this->represntative_validated_at = $represntative_validated_at;
+        $this->representative_validated_at = $representative_validated_at;
+
+        return $this;
+    }
+
+    public function getRelations(): ?Residence
+    {
+        return $this->relations;
+    }
+
+    public function setRelations(?Residence $relations): self
+    {
+        $this->relations = $relations;
+
+        return $this;
+    }
+
+    public function getRents(): ?User
+    {
+        return $this->Rents;
+    }
+
+    public function setRents(?User $Rents): self
+    {
+        $this->Rents = $Rents;
 
         return $this;
     }
