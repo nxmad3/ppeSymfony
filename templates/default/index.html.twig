@@ -3,15 +3,23 @@
 
 {% block body %}
 
-        <div style="margin-left: 5%;margin-top: 3%">
-            <h1>White Gordon</h1>
-            <p>vous êtes inscrit en tant que <strong>locataire</strong> que la plateforme</p>
-
-            <h2>Actions :</h2>
-            <a href="">>Afficher mes locations</a>
-            <br><a href="">>Supprimer mon compte</a>
-        </div>
-
+    <div style="margin-left: 5%;margin-top: 3%">
+        <h3>{{ user.name }} {{ user.lastName }} </h3>
+        <p>vous êtes inscrit en tant que
+            <strong>
+                {% if user.roles[0] == "owner" %}
+                    bailleur
+                {% endif %}
+                {% if user.roles[0] == "representative" %}
+                    locataire
+                {% endif %}
+                {% if user.roles[0] == "tenant" %}
+                    mandataire
+                {% endif %}
+            </strong> que la plateforme</p>
+        <h2>Actions :</h2>
+        <a href="">>Afficher mes locations</a>
+        <br><a href="">>Supprimer mon compte</a>
     </div>
 
 {% endblock %}

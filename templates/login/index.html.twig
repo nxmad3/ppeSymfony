@@ -18,8 +18,8 @@
         <form action="{{ path('login') }}" style="margin-left: 5%" method="post">
             <div class="mb-4">
                 <label for="username" class="form-label">Email</label>
-                <input type="text" id="username" style="width: 50%" class="form-control" name="_username"
-                       value="{{ last_username }}"/>
+                <input type="text" id="username" style="width: 50%" class="form-control" name="_username">
+
             </div>
             <div class="mb-4">
                 <label for="password" class="form-label">Mot de passe</label>
@@ -28,9 +28,7 @@
             </div>
             <button type="submit" class="btn btn-success">Connexion</button>
             <a href="reset-password">mot de passe oublie?</a>
-            {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
+
         </form>
         <footer>
             <section
