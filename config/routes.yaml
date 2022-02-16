@@ -22,4 +22,8 @@ app_logout:
     path: /logout
     methods: GET
 
+tenant:
+    path: /tenant
+    methods: [ "GET", "POST" ]
+    controller: App\Controller\TenantController::index
 

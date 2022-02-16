@@ -27,6 +27,8 @@ class UserFixtures extends fixture
 
             if ($i <= 3) {
                 $user = new User();
+                $user->setName("test".$i);
+                $user->setLastName("TEST".$i);
                 $user->setRole("representative");
                 $user->setEmail("representative" . $i . "@root.fr");
 //                $password = $this->hasher->hashPassword($user, 'test' . $i);

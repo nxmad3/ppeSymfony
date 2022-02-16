@@ -1,25 +1,23 @@
 <?php
 
 namespace App\Controller;
+
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class DefaultController extends AbstractController
+class TenantController extends AbstractController
 {
-
     public function index(Request $request): Response
     {
 
         if($this->getUser()){
-            $user = $this->getDoctrine()->getRepository(User::class)->find($this->getUser());
-            return $this->render('default/index.html.twig',[
-                'user'=>$user
+            $users = $this->getDoctrine()->getRepository(User::class)->findUserByRole('["tenant"]');
+            return $this->render('tenant/index.html.twig',[
+                'users'=>$users
             ]);
         }
         return $this->render('login/index.html.twig');
     }
-
 }
