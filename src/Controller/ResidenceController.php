@@ -6,14 +6,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class RentController extends AbstractController
+class ResidenceController extends AbstractController
 {
-    #[Route('/rent', name: 'rent')]
+    #[Route('/residence', name: 'residence')]
     public function index(): Response
     {
-        return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/RentController.php',
+        return $this->render('residence/index.html.twig', [
+            'controller_name' => 'ResidenceController',
         ]);
     }
 }

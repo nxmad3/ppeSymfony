@@ -1,0 +1,23 @@
+
+{% block body %}
+    {% for flashError in app.flashes('reset_password_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+    <head>
+        <script src="https://kit.fontawesome.com/a7749f8008.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <div style="text-align: center; margin-top: 15%;">
+
+        <h1>Reinitialiser votre mot de passe</h1>
+        <p>Entrer Votre Adresse Mail</p>
+
+        {{ form_start(requestForm) }}
+        {{ form_row(requestForm.email) }}
+
+        <button class="btn btn-success" style="margin-top: 1%">envoyer mail</button>
+        {{ form_end(requestForm) }}
+    </div>
+
+{% endblock %}
