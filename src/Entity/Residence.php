@@ -5,53 +5,37 @@ namespace App\Entity;
 use App\Repository\ResidenceRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity(repositoryClass=ResidenceRepository::class)
- */
+#[ORM\Entity(repositoryClass: ResidenceRepository::class)]
 class Residence
 {
-    /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
-     */
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column(type: 'integer')]
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $adress;
+    #[ORM\Column(type: 'string', length: 255)]
+    private $address;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $city;
 
-    /**
-     * @ORM\Column(type="string", length=45)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $zip_code;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $country;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
+    #[ORM\Column(type: 'string', length: 255)]
     private $inventory_file;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class)
-     */
-    private $relation;
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'residences')]
+    private $owner;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'residences')]
+    private $representative;
 
     public function getId(): ?int
     {
@@ -70,14 +54,14 @@ class Residence
         return $this;
     }
 
-    public function getAdress(): ?string
+    public function getAddress(): ?string
     {
-        return $this->adress;
+        return $this->address;
     }
 
-    public function setAdress(string $adress): self
+    public function setAddress(string $address): self
     {
-        $this->adress = $adress;
+        $this->address = $address;
 
         return $this;
     }
@@ -130,16 +114,27 @@ class Residence
         return $this;
     }
 
-    public function getRelation(): ?User
+    public function getOwnerId(): ?User
     {
-        return $this->relation;
+        return $this->owner_id;
     }
 
-    public function setRelation(?User $relation): self
+    public function setOwnerId(?User $owner): self
     {
-        $this->relation = $relation;
+        $this->owner_id = $owner;
 
         return $this;
     }
 
+    public function getRepresentativeId(): ?User
+    {
+        return $this->representative_id;
+    }
+
+    public function setRepresentativeId(?User $representative): self
+    {
+        $this->representative_id = $representative;
+
+        return $this;
+    }
 }

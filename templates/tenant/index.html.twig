@@ -2,6 +2,6 @@
 {% block body %}
 
     {% for user in users %}
-    <h3> test {{ dump.name }}</h3>
+    <h3> test {{ dump(name) }}</h3>
     {% endfor %}
 {% endblock %}
