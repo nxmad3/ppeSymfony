@@ -1,7 +1,23 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    {% for user in users %}
-    <h3> test {{ dump(name) }}</h3>
-    {% endfor %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.name }}}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock %}
