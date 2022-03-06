@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="projet fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="add tenant index">
       <change beforePath="$PROJECT_DIR$/templates/tenant/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tenant/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -185,7 +184,7 @@
       <workItem from="1641155199994" duration="1423000" />
       <workItem from="1641196145223" duration="21845000" />
       <workItem from="1641224302400" duration="836000" />
-      <workItem from="1646599865038" duration="3148000" />
+      <workItem from="1646599865038" duration="3790000" />
     </task>
     <task id="LOCAL-00001" summary="reset password">
       <created>1641155985930</created>
@@ -229,7 +228,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646601907236</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add tenant index">
+      <created>1646603077856</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1646603077856</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -264,7 +270,8 @@
     <MESSAGE value="add Fixture" />
     <MESSAGE value="redirection if not connected display of user name and role" />
     <MESSAGE value="projet fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="projet fix" />
+    <MESSAGE value="add tenant index" />
+    <option name="LAST_COMMIT_MESSAGE" value="add tenant index" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

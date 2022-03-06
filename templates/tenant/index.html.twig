@@ -5,8 +5,9 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
+            <th scope="col">nom</th>
+            <th scope="col">prenom</th>
+            <th scope="col">prenom</th>
         </tr>
         </thead>
         <tbody>
@@ -14,7 +15,7 @@
             <tr>
                 <th scope="row">{{ loop.index }}</th>
                 <td>{{ user.lastName }}</td>
-                <td>{{ user.name }}}</td>
+                <td>{{ user.name }}</td>
             </tr>
         {% endfor %}
         </tbody>
