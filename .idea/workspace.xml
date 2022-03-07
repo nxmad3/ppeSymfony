@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="add user profile/mandataire">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ResidenceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ResidenceController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Rent.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Rent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/RentRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/RentRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ResidenceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ResidenceRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/residence/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/residence/index.html.twig" afterDir="false" />
+    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="add Residence">
+      <change beforePath="$PROJECT_DIR$/src/DataFixtures/RentFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/RentFixtures.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -200,7 +194,7 @@
       <workItem from="1641196145223" duration="21845000" />
       <workItem from="1641224302400" duration="836000" />
       <workItem from="1646599865038" duration="7947000" />
-      <workItem from="1646638101337" duration="9806000" />
+      <workItem from="1646638101337" duration="10489000" />
     </task>
     <task id="LOCAL-00001" summary="reset password">
       <created>1641155985930</created>
@@ -265,7 +259,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646641238557</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="add Residence">
+      <created>1646656389873</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1646656389873</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,7 +305,8 @@
     <MESSAGE value="add tenant index" />
     <MESSAGE value="some fix" />
     <MESSAGE value="add user profile/mandataire" />
-    <option name="LAST_COMMIT_MESSAGE" value="add user profile/mandataire" />
+    <MESSAGE value="add Residence" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Residence" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
