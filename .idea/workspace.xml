@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="add Residence">
+    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="add fixture">
       <change beforePath="$PROJECT_DIR$/src/DataFixtures/RentFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/RentFixtures.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -12,6 +12,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="Git.Pull.Settings">
+    <option name="OPTIONS">
+      <set>
+        <option value="REBASE" />
+      </set>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -194,7 +201,7 @@
       <workItem from="1641196145223" duration="21845000" />
       <workItem from="1641224302400" duration="836000" />
       <workItem from="1646599865038" duration="7947000" />
-      <workItem from="1646638101337" duration="10489000" />
+      <workItem from="1646638101337" duration="10956000" />
     </task>
     <task id="LOCAL-00001" summary="reset password">
       <created>1641155985930</created>
@@ -266,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646656389873</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="add fixture">
+      <created>1646657011483</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1646657011483</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +320,8 @@
     <MESSAGE value="some fix" />
     <MESSAGE value="add user profile/mandataire" />
     <MESSAGE value="add Residence" />
-    <option name="LAST_COMMIT_MESSAGE" value="add Residence" />
+    <MESSAGE value="add fixture" />
+    <option name="LAST_COMMIT_MESSAGE" value="add fixture" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

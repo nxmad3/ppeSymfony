@@ -18,8 +18,8 @@ class RentFixtures extends Fixture implements DependentFixtureInterface
         $date->setTimestamp($timestamp);
 
         $rent = new Rent();
-        $rent->setTenantId($this->getReference('user-'.rand(5,7)));
-        $rent->setResidenceId($this->getReference('residence-'.rand(1,5)));
+        $rent->setTenant($this->getReference('user-'.rand(5,7)));
+        $rent->setResidence($this->getReference('residence-'.rand(1,5)));
         $rent->setInventoryFile("test");
         $rent->setOwner($this->getReference('user-'.rand(8,10)));
         $rent->setAvailable(new \DateTime());
