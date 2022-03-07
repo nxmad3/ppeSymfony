@@ -137,4 +137,20 @@ class Residence
 
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRepresentative()
+    {
+        return $this->representative;
+    }
+
+    /**
+     * @param mixed $representative
+     */
+    public function setRepresentative($representative): void
+    {
+        $this->representative = $representative;
+    }
 }

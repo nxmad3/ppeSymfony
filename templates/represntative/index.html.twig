@@ -1,21 +1,22 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>liste des locataires</h1>
+    <h1>liste des mandataire</h1>
     <table class="table">
         <thead>
         <tr>
             <th scope="col">#</th>
             <th scope="col">nom</th>
             <th scope="col">prenom</th>
-            <th scope="col">prenom</th>
+            <th scope="col">nombre de locations</th>
         </tr>
         </thead>
         <tbody>
         {% for user in users %}
             <tr>
                 <th scope="row">{{ loop.index }}</th>
-                <td><a href="/location-list/{{ user.id }}">{{ user.lastName }}</a></td>
+                <td><a href="/user/{{ user.id }}">{{ user.lastName }}</a></td>
                 <td>{{ user.name }}</td>
+                <td>{{ user.totalResidence }}</td>
             </tr>
         {% endfor %}
         </tbody>

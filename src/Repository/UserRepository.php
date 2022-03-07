@@ -43,8 +43,26 @@ class UserRepository extends ServiceEntityRepository
             ->andWhere('u.roles = :val')
             ->setParameter('val', $value)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+    }
+
+    public function findUserByRoleAndGetId($value): array
+    {
+        return $this->createQueryBuilder('u')
+            ->select("u.id")
+            ->andWhere('u.roles = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findByID($value)
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
 }

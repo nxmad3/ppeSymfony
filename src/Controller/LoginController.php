@@ -24,6 +24,8 @@ class LoginController extends AbstractController
             'error' => $error,
         ]);
     }
+
+    #[Route('/logout', name: 'logout')]
     public function delete(Request $request): Response
     {
         $submittedToken = $request->request->get('token');

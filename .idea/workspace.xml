@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="add tenant index">
+    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="some fix">
+      <change afterPath="$PROJECT_DIR$/src/Controller/RepresntativeController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/represntative/index.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/tenant/list-residence.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ResidenceController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ResidenceController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TenantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TenantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Residence.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Residence.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/ResidenceRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ResidenceRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/UserRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/UserRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/residence/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/residence/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/tenant/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tenant/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -20,6 +35,14 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/config/services.yaml" root0="FORCE_HIGHLIGHTING" />
@@ -132,6 +155,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
@@ -184,7 +208,8 @@
       <workItem from="1641155199994" duration="1423000" />
       <workItem from="1641196145223" duration="21845000" />
       <workItem from="1641224302400" duration="836000" />
-      <workItem from="1646599865038" duration="3790000" />
+      <workItem from="1646599865038" duration="7947000" />
+      <workItem from="1646638101337" duration="3003000" />
     </task>
     <task id="LOCAL-00001" summary="reset password">
       <created>1641155985930</created>
@@ -235,7 +260,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646603077856</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="some fix">
+      <created>1646603810359</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1646603810359</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,13 +297,15 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="reset password" />
     <MESSAGE value="templates" />
     <MESSAGE value="add Fixture" />
     <MESSAGE value="redirection if not connected display of user name and role" />
     <MESSAGE value="projet fix" />
     <MESSAGE value="add tenant index" />
-    <option name="LAST_COMMIT_MESSAGE" value="add tenant index" />
+    <MESSAGE value="some fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="some fix" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

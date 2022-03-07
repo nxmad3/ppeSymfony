@@ -19,6 +19,29 @@ class ResidenceRepository extends ServiceEntityRepository
         parent::__construct($registry, Residence::class);
     }
 
+    public function countNbResidence($values): array
+    {
+        foreach ($values as $value) {
+            return $this->createQueryBuilder('r')
+                ->select('count(r.id) as totalResidence,u.name , u.lastName , u.id')
+                ->innerJoin('r.representative', 'u')
+                ->andWhere('r.representative = :val')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getResult();
+        }
+    }
+
+    public function GetResidence($value): array
+    {
+        return $this->createQueryBuilder('r')
+            ->innerJoin('r.representative', 'u')
+            ->andWhere('r.representative = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Residence[] Returns an array of Residence objects
     //  */
