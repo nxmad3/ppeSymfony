@@ -19,6 +19,22 @@ class RentRepository extends ServiceEntityRepository
         parent::__construct($registry, Rent::class);
     }
 
+    public function GetRent(): array
+    {
+        return $this->createQueryBuilder('rent')
+            ->innerJoin('rent.tenant', 't')
+            ->innerJoin('rent.residence','residence')
+            ->getQuery()
+            ->getResult();
+    }
+    public function GetTotalResidence() : array
+    {
+        return $this->createQueryBuilder('r')
+            ->select("COUNT(r.id)")
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     // /**
     //  * @return Rent[] Returns an array of Rent objects
     //  */

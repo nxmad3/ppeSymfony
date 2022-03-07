@@ -42,6 +42,16 @@ class ResidenceRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function GetTotalResidence() : array
+    {
+        return $this->createQueryBuilder('r')
+            ->select("COUNT(r.id)")
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+
+
     // /**
     //  * @return Residence[] Returns an array of Residence objects
     //  */

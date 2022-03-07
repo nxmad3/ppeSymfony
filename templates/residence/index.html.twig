@@ -1,24 +1,15 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h3>bien</h3>
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">nom</th>
-            <th scope="col">prenom</th>
-            <th scope="col">prenom</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for residence in residences %}
-            <tr>
-                <th scope="row">{{ loop.index }}</th>
-                <td><a href="/location-list/{{ user.id }}">{{ user.lastName }}</a></td>
-                <td>{{ user.name }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <h3> {{ nb[1] }} bien </h3>
+    {% for residence in residences %}
+        <p>{{ residence.residence.name }}</p>
+        <p>disponible {{ residence.available|date("m/d/Y") }}</p>
+        <p>Gere par {{ residence.owner.name }} {{ residence.owner.lastName }}</p>
+        {% if residence.tenant.id == NULL %}
+            Non occupé
+        {% else %}
+            Actuellement occupé
+        {% endif %}
+    {% endfor %}
 
 {% endblock %}

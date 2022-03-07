@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Rent;
 use App\Entity\Residence;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,9 +14,11 @@ class ResidenceController extends AbstractController
     public function index(): Response
     {
         if($this->getUser()){
-            $residence = $this->getDoctrine()->getRepository(Residence::class)->findAll();
-            return $this->render('tenant/index.html.twig',[
-                'residences'=>$residence
+            $residences = $this->getDoctrine()->getRepository(Rent::class)->GetRent();
+            $nb = $this->getDoctrine()->getRepository(Rent::class)->GetTotalResidence();
+            return $this->render('residence/index.html.twig',[
+                'residences'=>$residences,
+                'nb' => $nb
             ]);
         }
         return $this->render('login/index.html.twig');

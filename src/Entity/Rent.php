@@ -19,6 +19,10 @@ class Rent
     #[ORM\OneToOne(targetEntity: Residence::class, cascade: ['persist', 'remove'])]
     private $residence;
 
+    #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
+    private $owner;
+
+
     #[ORM\Column(type: 'string', length: 255)]
     private $inventory_file;
 
@@ -45,6 +49,9 @@ class Rent
 
     #[ORM\Column(type: 'datetime')]
     private $represntative_validated_at;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $available;
 
     public function getId(): ?int
     {
@@ -179,6 +186,66 @@ class Rent
     public function setRepresntativeValidatedAt(\DateTimeInterface $represntative_validated_at): self
     {
         $this->represntative_validated_at = $represntative_validated_at;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getResidence()
+    {
+        return $this->residence;
+    }
+
+    /**
+     * @param mixed $residence
+     */
+    public function setResidence($residence): void
+    {
+        $this->residence = $residence;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTenant()
+    {
+        return $this->tenant;
+    }
+
+    /**
+     * @param mixed $tenant
+     */
+    public function setTenant($tenant): void
+    {
+        $this->tenant = $tenant;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param mixed $owner
+     */
+    public function setOwner($owner): void
+    {
+        $this->owner = $owner;
+    }
+
+    public function getAvailable(): ?\DateTimeInterface
+    {
+        return $this->available;
+    }
+
+    public function setAvailable(?\DateTimeInterface $available): self
+    {
+        $this->available = $available;
 
         return $this;
     }
