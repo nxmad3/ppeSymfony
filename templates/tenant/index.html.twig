@@ -7,7 +7,7 @@
             <th scope="col">#</th>
             <th scope="col">nom</th>
             <th scope="col">prenom</th>
-            <th scope="col">prenom</th>
+            <th scope="col">action</th>
         </tr>
         </thead>
         <tbody>
@@ -16,6 +16,7 @@
                 <th scope="row">{{ loop.index }}</th>
                 <td><a href="/location-list/{{ user.id }}">{{ user.lastName }}</a></td>
                 <td>{{ user.name }}</td>
+                <td><a type="button"href="/edittenant/{{ user.id }}">Mettre à jour les données</a></td>
             </tr>
         {% endfor %}
         </tbody>
