@@ -25,15 +25,13 @@ class LoginController extends AbstractController
         ]);
     }
 
-    #[Route('/logout', name: 'logout')]
-    public function delete(Request $request): Response
+    /**
+     * @Route("/logout", name="app_logout", methods={"GET"})
+     */
+    public function logout(): void
     {
-        $submittedToken = $request->request->get('token');
-
-        // 'delete-item' is the same value used in the template to generate the token
-        if ($this->isCsrfTokenValid('delete-item', $submittedToken)) {
-            // ... do something, like deleting an object
-        }
+        // controller can be blank: it will never be called!
+        throw new \Exception('Don\'t forget to activate logout in security.yaml');
     }
 
 }

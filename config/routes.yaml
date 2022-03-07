@@ -17,3 +17,4 @@ tenant:
     methods: [ "GET", "POST" ]
     controller: App\Controller\TenantController::index
 
+
