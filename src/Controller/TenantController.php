@@ -32,6 +32,11 @@ class TenantController extends AbstractController
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(EditTenantFormType::class, $user);
         $form->handleRequest($request);
+        $entityManager = $this->getDoctrine()->getManager();
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
         return $this->renderForm('tenant/edit.html.twig', [
             'form' => $form,
         ]);
