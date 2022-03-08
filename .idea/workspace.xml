@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="add fixture">
-      <change beforePath="$PROJECT_DIR$/src/DataFixtures/RentFixtures.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataFixtures/RentFixtures.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Form/AddTenantFormType.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/tenant/add.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_02_2022_10_24__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_16_02_2022_10_24__Changes_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TenantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TenantController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/tenant/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tenant/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,8 +42,8 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/config/services.yaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/templates/error/index.html.twig" root0="FORCE_HIGHLIGHTING" root1="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/config/services.yaml" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -136,6 +141,9 @@
       <path value="$PROJECT_DIR$/vendor/symfony/mailgun-mailer" />
       <path value="$PROJECT_DIR$/vendor/symfony/http-client" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
+      <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
+      <path value="$PROJECT_DIR$/vendor/symfony/translation" />
     </include_path>
   </component>
   <component name="ProjectId" id="21aGr9t2NtgrVowmzw6xWQXrP18" />
@@ -202,6 +210,7 @@
       <workItem from="1641224302400" duration="836000" />
       <workItem from="1646599865038" duration="7947000" />
       <workItem from="1646638101337" duration="10956000" />
+      <workItem from="1646743684915" duration="9995000" />
     </task>
     <task id="LOCAL-00001" summary="reset password">
       <created>1641155985930</created>
@@ -308,6 +317,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

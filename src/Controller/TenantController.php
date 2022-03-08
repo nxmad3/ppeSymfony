@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Entity\Residence;
 use App\Entity\User;
+use App\Form\AddTenantFormType;
 use App\Form\EditOwnerForm;
-use App\Form\EditRepresentativeFormType;
 use App\Form\EditTenantFormType;
+use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,6 +34,26 @@ class TenantController extends AbstractController
         $form->handleRequest($request);
         return $this->renderForm('tenant/edit.html.twig', [
             'form' => $form,
+        ]);
+    }
+    #[Route('/addtenant', name: 'addtenant')]
+
+    public function addtenant(Request $request,): Response
+    {
+        $user = new User();
+        $form = $this->createForm(AddTenantFormType::class, $user);
+        $form->handleRequest($request);
+        $user->setRoles(array("tenant"));
+        $entityManager = $this->getDoctrine()->getManager();
+        if ($form->isSubmitted() && $form->isValid()){
+            $entityManager->persist($user);
+            $entityManager->flush();
+        }
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->addFlash('success', 'Le locataire a bien ete ajouter');
+        }
+        return $this->render('tenant/add.html.twig', [
+            'form' => $form->createView()
         ]);
     }
 }

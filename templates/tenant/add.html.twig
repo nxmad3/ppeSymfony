@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>ajouter un locataire</h1>
+    {{ form_start(form, { attr: { id: 'form-edit_owner', novalidate: 'novalidate' } }) }}
+    {{ form_row(form) }}
+    <button type="submit">Ajouter</button>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endblock %}
