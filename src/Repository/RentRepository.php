@@ -35,6 +35,20 @@ class RentRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    public function countNbResidence($values): array
+    {
+        foreach ($values as $key => $value) {
+            $val[] = $this->createQueryBuilder('r')
+                ->select('count(r.id) as totalResidence,u.name , u.lastName , u.id')
+                ->innerJoin('r.representative', 'u')
+                ->andWhere('u.id in (:val)')
+                ->setParameter('val', $value)
+                ->getQuery()
+                ->getResult();
+        }
+        return $val;
+    }
+
     // /**
     //  * @return Rent[] Returns an array of Rent objects
     //  */

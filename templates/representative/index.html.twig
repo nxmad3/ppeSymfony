@@ -1,6 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     <h1>liste des mandataire</h1>
+    <a type="button"href="/addRepresentative">Ajouter un locataire</a>
     <table class="table">
         <thead>
         <tr>
@@ -15,10 +16,10 @@
         {% for user in users %}
             <tr>
                 <th scope="row">{{ loop.index }}</th>
-                <td><a href="/user/{{ user.id }}">{{ user.lastName }}</a></td>
-                <td>{{ user.name }}</td>
-                <td>{{ user.totalResidence }}</td>
-                <td><a type="button"href="/editrepresentative/{{ user.id }}">Mettre à jour les données</a></td>
+                <td><a href="/user/{{ user[0].id }}">{{ user[0].lastName }}</a></td>
+                <td>{{ user[0].name }}</td>
+                <td>{{ user[0].totalResidence }}</td>
+                <td><a type="button"href="/editrepresentative/{{ user[0].id }}">Mettre à jour les données</a></td>
             </tr>
         {% endfor %}
         </tbody>

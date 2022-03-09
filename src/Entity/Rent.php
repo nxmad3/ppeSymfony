@@ -13,14 +13,14 @@ class Rent
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
     private $tenant;
 
-    #[ORM\OneToOne(targetEntity: Residence::class, cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Residence::class, cascade: ['persist', 'remove'])]
     private $residence;
 
-    #[ORM\OneToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
-    private $owner;
+    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
+    private $representative;
 
 
     #[ORM\Column(type: 'string', length: 255)]

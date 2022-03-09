@@ -66,7 +66,7 @@ class TenantController extends AbstractController
             $email = (new TemplatedEmail())
                 ->from('merciert60@gmail.com')
                 ->to($user->getEmail())
-                ->subject('Confirmation dinscription')
+                ->subject('identifiant et mot de passe de votre compte')
                 ->htmlTemplate('tenant/emailadd.html.twig')
                 ->context([
                     'firstname' => $user->getname(),
