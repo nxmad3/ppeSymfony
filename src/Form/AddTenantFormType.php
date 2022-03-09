@@ -27,15 +27,6 @@ class AddTenantFormType extends AbstractType
             ->add('lastname')
             ->add('email', EmailType::class)
             ->add('name')
-            ->add('password', RepeatedType::class, [
-            'type' => PasswordType::class,
-            'invalid_message' => 'The password fields must match.',
-            'options' => ['attr' => ['class' => 'password-field']],
-            'required' => true,
-                'mapped' => false,
-            'first_options'  => ['label' => 'Password'],
-            'second_options' => ['label' => 'Repeat Password'],
-        ])
             ->add('isVerified', HiddenType::class , [
                 "data"=>1
             ]);

@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="ajout locataire mot de pas en clair a changer">
+    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="corectif amelioratif">
+      <change afterPath="$PROJECT_DIR$/templates/tenant/emailadd.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/ppe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ppe.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/TenantController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TenantController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/AddTenantFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/AddTenantFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/EditTenantFormType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/EditTenantFormType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/tenant/edit.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/tenant/edit.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,6 +147,7 @@
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-paginator-bundle" />
       <path value="$PROJECT_DIR$/vendor/knplabs/knp-components" />
       <path value="$PROJECT_DIR$/vendor/symfony/translation" />
+      <path value="$PROJECT_DIR$/vendor/fakerphp/faker" />
     </include_path>
   </component>
   <component name="ProjectId" id="21aGr9t2NtgrVowmzw6xWQXrP18" />
@@ -209,7 +214,8 @@
       <workItem from="1641224302400" duration="836000" />
       <workItem from="1646599865038" duration="7947000" />
       <workItem from="1646638101337" duration="10956000" />
-      <workItem from="1646743684915" duration="11348000" />
+      <workItem from="1646743684915" duration="12470000" />
+      <workItem from="1646818538229" duration="7062000" />
     </task>
     <task id="LOCAL-00001" summary="reset password">
       <created>1641155985930</created>
@@ -295,7 +301,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646754010190</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="corectif amelioratif">
+      <created>1646755518411</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1646755518411</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,7 +351,8 @@
     <MESSAGE value="add Residence" />
     <MESSAGE value="add fixture" />
     <MESSAGE value="ajout locataire mot de pas en clair a changer" />
-    <option name="LAST_COMMIT_MESSAGE" value="ajout locataire mot de pas en clair a changer" />
+    <MESSAGE value="corectif amelioratif" />
+    <option name="LAST_COMMIT_MESSAGE" value="corectif amelioratif" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
