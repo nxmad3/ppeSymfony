@@ -23,6 +23,7 @@
         "symfony/http-client": "5.3.*",
         "symfony/mailer": "5.3.*",
         "symfony/mailgun-mailer": "5.3.*",
+        "symfony/mailjet-mailer": "5.3.*",
         "symfony/proxy-manager-bridge": "5.3.*",
         "symfony/runtime": "5.3.*",
         "symfony/security-bundle": "5.3.*",

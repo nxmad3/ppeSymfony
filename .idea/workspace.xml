@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="corectif amelioratif">
-      <change afterPath="$PROJECT_DIR$/templates/tenant/emailadd.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/ppe.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ppe.iml" afterDir="false" />
+    <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="ajout locataire plus envoie de mail login mdp">
     <list default="true" id="8cc1aa7c-fe64-49d2-91e9-7bb5d0329e58" name="Changes" comment="add composer knp and update fixture">
       <change afterPath="$PROJECT_DIR$/src/Form/AddRepresentativeForm.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
@@ -242,7 +239,7 @@
       <workItem from="1646751985628" duration="396000" />
       <workItem from="1646752439657" duration="1643000" />
       <workItem from="1646743684915" duration="12470000" />
-      <workItem from="1646818538229" duration="7062000" />
+      <workItem from="1646818538229" duration="8064000" />
       <workItem from="1646819330825" duration="7942000" />
     </task>
     <task id="LOCAL-00001" summary="reset password">
@@ -336,7 +333,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646755518411</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="ajout locataire plus envoie de mail login mdp">
+      <created>1646828435253</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1646828435253</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -380,7 +384,8 @@
     <MESSAGE value="add composer knp and update fixture" />
     <MESSAGE value="ajout locataire mot de pas en clair a changer" />
     <MESSAGE value="corectif amelioratif" />
-    <option name="LAST_COMMIT_MESSAGE" value="corectif amelioratif" />
+    <MESSAGE value="ajout locataire plus envoie de mail login mdp" />
+    <option name="LAST_COMMIT_MESSAGE" value="ajout locataire plus envoie de mail login mdp" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
