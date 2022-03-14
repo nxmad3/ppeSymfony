@@ -1,17 +1,18 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h3> {{ nb[1] }} bien </h3>
+    <h3 style="color: #9F5540"> {{ nb[1] }} bien </h3>
+
     {% for residence in residences %}
-        {{ residence[0].name }}
-        {{ residence[0].lastName }}
-        {{ residence[0].residenceName }}
-        {{ residence[0].nbLocationTotal }}
+        <h1 style="color: #9F5540">{{ residence[0].residenceName }} <a href="/editresidence/{{ residence[0].residenceId }}" class="btn" style="color: #9F5540">accede</a></h1>
         disponible : {{ residence[0].arrival_date|date('d/m/Y') }}
-            {% if residence[0].tenantId == null %}
+        {% if residence[0].tenantId == null %}
             Non occupé
         {% else %}
-            Actuellement occupé
+            <br>Actuellement occupé
+        <br>{{ residence[0].nbLocationTotal }}
+
         {% endif %}
+
     {% endfor %}
 
 {% endblock %}

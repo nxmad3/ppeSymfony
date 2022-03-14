@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div style="margin-left: 10%;margin-top:8%;float: left;">
+        <h1 style="color: #9F5540;margin-bottom: 3%;"></h1>
+        <h1 style="color: #9F5540">{{ residence.name }}</h1>
+        {{ form_start(form, { attr: { id: 'form-edit_residence', novalidate: 'novalidate' } }) }}
+        {{ form_row(form) }}
+        <button style="margin-top: 3%" class="btn btn-success" type="submit">Mettre à jour les données</button>
+    </div>
+{% endblock %}
