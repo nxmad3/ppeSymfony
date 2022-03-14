@@ -2,8 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Residence;
 use App\Entity\User;
+use App\Repository\ResidenceRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -15,11 +19,17 @@ class EditRepresentativeFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $data = $builder->getData();
         $builder
             ->add('name')
             ->add('lastname')
-            ->add('email', EmailType::class)
-            ->add('name');
+            ->add('email', EntityType::class, [
+                'class' => Residence::class,
+                'query_builder' => function (ResidenceRepository $er) {
+                    return $er->createQueryBuilder('u');
+                },
+                'choice_label' => 'Residence',
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

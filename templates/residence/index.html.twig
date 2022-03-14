@@ -2,14 +2,18 @@
 {% block body %}
     <h3> {{ nb[1] }} bien </h3>
     {% for residence in residences %}
-        <p>{{ residence.residence.name }}</p>
-        <p>disponible {{ residence.available|date("m/d/Y") }}</p>
-        <p>Gere par {{ residence.owner.name }} {{ residence.owner.lastName }}</p>
-        {% if residence.tenant.id == NULL %}
-            Non occupé
-        {% else %}
-            Actuellement occupé
-        {% endif %}
+        {{ dump(residence) }}
+        {{ residence.tenant.name }}
+        {{ residence.tenant.lastname }}
+        disponible : {{ residence.available|date('d/m/Y') }}
+{#        <p>{{ residence.residence.name }}</p>#}
+{#        <p>disponible {{ residence.available|date("m/d/Y") }}</p>#}
+{#        <p>Gere par {{ residence.owner.name }} {{ residence.owner.lastName }}</p>#}
+{#        {% if residence.tenant.id == NULL %}#}
+{#            Non occupé#}
+{#        {% else %}#}
+{#            Actuellement occupé#}
+{#        {% endif %}#}
     {% endfor %}
 
 {% endblock %}
