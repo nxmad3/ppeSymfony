@@ -50,10 +50,7 @@ class RepresentativeController extends AbstractController
     public function editrepresentative(int $id, Request $request): Response
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
-        $residences = $this->getDoctrine()->getRepository(Residence::class)->findAll();
-        $form = $this->createForm(EditRepresentativeFormType::class, $user, [
-            'data' => $residences
-        ]);
+        $form = $this->createForm(EditRepresentativeFormType::class, $user);
         $form->handleRequest($request);
         $entityManager = $this->getDoctrine()->getManager();
         if ($form->isSubmitted() && $form->isValid()) {
@@ -62,6 +59,7 @@ class RepresentativeController extends AbstractController
         }
         return $this->renderForm('representative/edit.html.twig', [
             'form' => $form,
+            'user'=>$this->getUser(),
         ]);
     }
 
@@ -96,7 +94,7 @@ class RepresentativeController extends AbstractController
             $entityManager->flush();
         }
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->addFlash('success', 'Le locataire a bien ete ajouter');
+            $this->addFlash('success', 'Le mandataire a bien ete ajouter');
         }
         return $this->render('representative/add.html.twig', [
             'form' => $form->createView()

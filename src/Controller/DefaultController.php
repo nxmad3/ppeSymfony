@@ -11,7 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-
     public function index(Request $request): Response
     {
 

@@ -23,13 +23,8 @@ class EditRepresentativeFormType extends AbstractType
         $builder
             ->add('name')
             ->add('lastname')
-            ->add('email', EntityType::class, [
-                'class' => Residence::class,
-                'query_builder' => function (ResidenceRepository $er) {
-                    return $er->createQueryBuilder('u');
-                },
-                'choice_label' => 'Residence',
-            ]);
+            ->add('email', EmailType::class)
+            ->add('name');
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>edit</h1>
-    {{ form_start(form, { attr: { id: 'form-edit_tenant', novalidate: 'novalidate' } }) }}
-    {{ form_row(form) }}
-    <button type="submit">Ajouter</button>
+    <div style="margin-left: 10%;margin-top:8%;float: left;">
+        <h1 style="color: #9F5540;margin-bottom: 3%;">{{ user.name }} {{ user.lastName }}</h1>
+
+        {{ form_start(form, { attr: { id: 'form-edit_tenant', novalidate: 'novalidate' } }) }}
+        {{ form_row(form) }}
+        <button style="margin-top: 3%" class="btn btn-success" type="submit">Ajouter</button>
+    </div>
+    <div style="margin-right: 15%;margin-top:8%;float: right">
+        <h1 style="color: #9F5540;margin-bottom: 3%;">Liste des locations <button style="margin-top: 3%" class="btn btn-success" type="submit">Ajouter</button></h1>
+
+    </div>
 {% endblock %}

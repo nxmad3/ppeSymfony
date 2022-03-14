@@ -19,20 +19,24 @@
 
     </head>
     <body style="margin: 0">
-    <nav style="background-color: maroon; text-decoration: none; "><li>
+    <nav style="background-color: #9F5540; text-decoration: none; "><li>
             <a href="http://127.0.0.1:8001"> <button style="background-color: white;margin-top: 2%; margin-bottom: 2%; width: 10%; padding-top: 1%;padding-bottom: 1%">Logo</button></a>
             <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('index') }}">ACCUEIL</a>
             <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('residence') }}">BIENS</a>
             <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('tenant-list') }}">LOCATAIRES</a>
             <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('representative') }}">MANDATAIRES</a>
-            <a style="color: white; margin-left: 30%; text-decoration: none" href="{{ path('profil') }}"><i class="fas fa-user-circle"></i>MON PROFIL</a>
+            <a style="color: white; margin-left: 25%; text-decoration: none" href="{{ path('profil') }}"><i class="fas fa-user-circle"></i>MON PROFIL</a>
+            <a style="color: white;margin-left: 3%; text-decoration: none" href="/logout"><i class="fa-solid fa-code"></i></a>
 
         </li>
     </nav>
         {% block body %}{% endblock %}
         {% block footer %}
             <footer>
-                <section style="background-color: black; margin-top: 10%; margin-left: 0%; padding-top: 2%;padding-bottom: 4%">
+                <section style="background-color: black; margin-top: 10%; margin-left: 0%; padding-top: 2%;padding-bottom: 4%;position: fixed;
+ bottom: 0;
+  left: 0;
+  right: 0;">
                     <p style="float: right; color: #FFFFFF;margin-right: 3%">version 1.0</p>
                     <p style="color: #FFFFFF; margin-left: 5%">Gestion locative</p>
                     <p style="color: #FFFFFF; margin-left: 5%">Contact téléphone : 06 06 06 06 06 </p>

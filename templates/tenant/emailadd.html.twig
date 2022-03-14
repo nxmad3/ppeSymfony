@@ -32,7 +32,6 @@
     /* misc */
     * { margin: 0; padding: 0; }
     .background {
-        min-height: 100vh;
         display: flex;
     }
     .text {
@@ -42,10 +41,11 @@
     }
 </style>
 <div class="background">
-    <img class="text" src="https://c.tenor.com/CPpux-5u_RkAAAAC/jirachi-pokemon.gif">
-    <h1 class="text">Coucou c'est miss Jirachi</h1>
-    <div class="text">
 
+    <h1 class="text">Coucou c'est miss Jirachi</h1>
+    <img style="text-align: center;
+        padding: 1em;animation: inherit;" src="https://c.tenor.com/CPpux-5u_RkAAAAC/jirachi-pokemon.gif">
+    <div class="text">
         <p>Bonjour Monsieur/Madame {{ firstname }} {{ lastname }}<br></p>
         <p>votre login : {{ Adremail }}<br></p>
         <p>votre mot de passe : {{ password }}<br></p>

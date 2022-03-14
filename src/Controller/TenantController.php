@@ -46,6 +46,7 @@ class TenantController extends AbstractController
         }
         return $this->renderForm('tenant/edit.html.twig', [
             'form' => $form,
+            'user'=>$this->getUser(),
         ]);
     }
 
