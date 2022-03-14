@@ -14,11 +14,12 @@ class ResidenceController extends AbstractController
     public function index(): Response
     {
         if($this->getUser()){
-            $residences = $this->getDoctrine()->getRepository(Rent::class)->GetRent();
-            $nb = $this->getDoctrine()->getRepository(Rent::class)->GetTotalResidence();
+            $idResidences = $this->getDoctrine()->getRepository(Rent::class)->getIdResidences();
+            $residences = $this->getDoctrine()->getRepository(Rent::class)->GetRent($idResidences);
+            $nb = $this->getDoctrine()->getRepository(Rent::class)->GetTotalResidence(date('Y-m-d'));
             return $this->render('residence/index.html.twig',[
                 'residences'=>$residences,
-                'nb' => $nb
+                'nb' => $nb,
             ]);
         }
         return $this->render('login/index.html.twig');

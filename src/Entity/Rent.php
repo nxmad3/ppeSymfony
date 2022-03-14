@@ -19,9 +19,6 @@ class Rent
     #[ORM\ManyToOne(targetEntity: Residence::class, cascade: ['persist', 'remove'])]
     private $residence;
 
-    #[ORM\ManyToOne(targetEntity: User::class, cascade: ['persist', 'remove'])]
-    private $representative;
-
 
     #[ORM\Column(type: 'string', length: 255)]
     private $inventory_file;
