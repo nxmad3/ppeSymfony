@@ -6,7 +6,7 @@
         {{ residence[0].lastName }}
         {{ residence[0].residenceName }}
         {{ residence[0].nbLocationTotal }}
-        disponible : {{ residence[0].available|date('d/m/Y') }}
+        disponible : {{ residence[0].arrival_date|date('d/m/Y') }}
             {% if residence[0].tenantId == null %}
             Non occupé
         {% else %}

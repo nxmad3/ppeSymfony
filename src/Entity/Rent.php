@@ -47,9 +47,6 @@ class Rent
     #[ORM\Column(type: 'datetime')]
     private $represntative_validated_at;
 
-    #[ORM\Column(type: 'datetime', nullable: true)]
-    private $available;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -233,17 +230,5 @@ class Rent
     public function setOwner($owner): void
     {
         $this->owner = $owner;
-    }
-
-    public function getAvailable(): ?\DateTimeInterface
-    {
-        return $this->available;
-    }
-
-    public function setAvailable(?\DateTimeInterface $available): self
-    {
-        $this->available = $available;
-
-        return $this;
     }
 }
