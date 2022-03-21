@@ -22,7 +22,6 @@ class RentFixtures extends Fixture implements DependentFixtureInterface
         $rent->setResidence($this->getReference('residence-'.rand(1,5)));
         $rent->setInventoryFile("test");
         $rent->setOwner($this->getReference('user-'.rand(8,10)));
-        $rent->setAvailable(new \DateTime());
         $rent->setArrivalDate(new \DateTime());
         $rent->setDepartureDate(new \DateTime());
         $rent->setTenantSignature("yes");
