@@ -37,6 +37,9 @@ class Residence
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'residences')]
     private $representative;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $file;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -153,4 +156,38 @@ class Residence
     {
         $this->representative = $representative;
     }
+
+    public function getFile(): ?string
+    {
+        return $this->file;
+    }
+
+    public function setFile(?string $file): self
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+    public function addImage(File $file): self
+    {
+        if (!$this->file->contains($file)) {
+            $this->file[] = $file;
+            $file->setAnnonces($this);
+        }
+
+        return $this;
+    }
+    public function removeImage(File $file): self
+    {
+        if ($this->file->contains($file)) {
+            $this->file->removeElement($file);
+            // set the owning side to null (unless already changed)
+            if ($file->getAnnonces() === $this) {
+                $file->setAnnonces(null);
+            }
+        }
+
+        return $this;
+    }
+
 }

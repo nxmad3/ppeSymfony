@@ -5,6 +5,7 @@
     {% for residence in residences %}
         <h1 style="color: #9F5540">{{ residence[0].residenceName }} <a href="/editresidence/{{ residence[0].residenceId }}" class="btn" style="color: #9F5540">accede</a></h1>
         disponible : {{ residence[0].arrival_date|date('d/m/Y') }}
+        <img src="uploads/{{ residence[0].residenceFile }}">
         {% if residence[0].tenantId == null %}
             Non occupé
         {% else %}

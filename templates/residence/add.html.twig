@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div style="margin-left: 10%;margin-top:8%;float: left;">
-        <h1 style="color: #9F5540">{{ residence.name }}</h1>
+
+    <div style="margin-left: 10%;margin-top:8%;">
+        <h1 style="color:#9F5540;margin-bottom: 3%">Ajouter une Residence</h1>
         {{ form_start(form, { attr: { id: 'form-edit_owner', novalidate: 'novalidate' } }) }}
         {{ form_row(form) }}
-        <button style="margin-top: 3%" class="btn btn-success" type="submit">Mettre à jour les données</button>
+        <button class="btn btn-success" style="margin-top: 3%"type="submit">Ajouter</button>
         {% for message in app.flashes('success') %}
             <div class="alert alert-success">
                 {{ message }}
             </div>
         {% endfor %}
+    </div>
+
+
 {% endblock %}

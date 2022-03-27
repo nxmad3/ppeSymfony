@@ -23,7 +23,7 @@ class RentRepository extends ServiceEntityRepository
     {
         foreach ($idResidences as $key => $idResidence) {
             $val[] = $this->createQueryBuilder('rent')
-                ->select('count(rent.id) as nbLocationTotal ,r.name, r.lastName, rent.arrival_date, residence.name as residenceName ,t.id as tenantId, residence.id as residenceId')
+                ->select('count(rent.id) as nbLocationTotal ,r.name, r.lastName, rent.arrival_date, residence.name as residenceName ,t.id as tenantId, residence.id as residenceId, residence.file as residenceFile ')
                 ->innerJoin('rent.tenant', 't')
                 ->innerJoin('rent.residence', 'residence')
                 ->innerJoin('residence.representative', 'r')

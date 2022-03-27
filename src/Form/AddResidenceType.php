@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EditResidenceType extends AbstractType
+class AddResidenceType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -18,7 +18,9 @@ class EditResidenceType extends AbstractType
             ->add('address')
             ->add('city')
             ->add('zip_code')
-            ->add('country');
+            ->add('country')
+            ->add('inventory_file', FileType::class)
+            ->add('file', FileType::class);
 
     }
 
@@ -29,4 +31,5 @@ class EditResidenceType extends AbstractType
             'label' => false,
         ]);
     }
+
 }
