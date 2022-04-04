@@ -3,5 +3,6 @@
     {% for user in users %}
         {{ user.name }}
      {% endfor %}
+    {{ knp_pagination_render(articles) }}
 
 {% endblock %}

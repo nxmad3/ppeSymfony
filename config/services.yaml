@@ -6,6 +6,7 @@
 parameters:
         images_directory: '%kernel.project_dir%/public/uploads'
         brochures_directory: '%kernel.project_dir%/public/uploads/brochures'
+        '%kernel.project_dir%/vendor/knplabs/knp-paginator-bundle/templates': KnpPaginator
 services:
     # default configuration for services in *this* file
     _defaults:

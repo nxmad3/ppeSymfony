@@ -18,8 +18,7 @@
                 {% endif %}
             </strong> que la plateforme</p>
         <h2>Actions :</h2>
-        <a href="">>Afficher mes locations</a>
-        <br><a href="/deleteuser">>Supprimer mon compte</a>
+        <a href="">> Afficher mes locations</a><br>
+        <a href="/deleteuser" onclick="if(!confirm('Êtes-vous sûr de vouloir supprimer votre compte ?')) { return false; }">> Supprimer mon compte</a>
     </div>
-
 {% endblock %}

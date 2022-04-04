@@ -38,17 +38,21 @@ class  TenantController extends AbstractController
     }
 
     #[Route('/edittenant/{id}', name: 'edittenant') , security("is_granted('ROLE_TENANT') or is_granted('ROLE_OWNER')")]
-    public function edittenant(int $id, Request $request): Response
+    public function edittenant(int $id, Request $request, UserPasswordHasherInterface $hasher): Response
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $locations = $this->getDoctrine()->getRepository(Rent::class)->findLocationByUser($id);
         $form = $this->createForm(EditTenantFormType::class, $user);
         $form->handleRequest($request);
         $entityManager = $this->getDoctrine()->getManager();
-        if ($form->isSubmitted() && $form->isValid()) {
+
+        if ($form->isSubmitted() && $form->isValid())  {
             $entityManager->persist($user);
+            $password = $hasher->hashPassword($user, $user->getPassword());
+            $user->setPassword($password);
             $entityManager->flush();
         }
+
         return $this->renderForm('tenant/edit.html.twig', [
             'form' => $form,
             'locations' => $locations,

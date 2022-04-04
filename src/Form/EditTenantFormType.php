@@ -19,7 +19,15 @@ class EditTenantFormType extends AbstractType
             ->add('name')
             ->add('lastname')
             ->add('email', EmailType::class)
-            ->add('name');
+            ->add('name')
+            ->add('password', RepeatedType::class, [
+                'type' => PasswordType::class,
+                'invalid_message' => 'Les mots de passe sont different',
+                'options' => ['attr' => ['class' => 'password-field']],
+                'first_options'  => ['label' => 'Password'],
+                'second_options' => ['label' => 'Repeat Password'],
+            ]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver): void

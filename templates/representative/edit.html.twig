@@ -1,6 +1,8 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div style="margin-left: 10%;margin-top:8%;">
+    <div style="margin-left: 8%;margin-top:4%;">
+
+
         <h1 style="color: #9F5540;margin-bottom: 3%">{{ user.name }} {{ user.lastName }}</h1>
         {{ form_start(form, { attr: { id: 'form-edit_tenant', novalidate: 'novalidate' } }) }}
         {{ form_row(form) }}

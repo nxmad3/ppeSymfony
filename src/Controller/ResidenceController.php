@@ -51,7 +51,6 @@ class ResidenceController extends AbstractController
     #[Route('/editresidence/{id}', name: 'editresidence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
     public function editresidence(int $id, Request $request,SluggerInterface $slugger, KernelInterface $appKernel,EntityManagerInterface $entityManager): Response
     {
-
         $residence = $this->getDoctrine()->getRepository(Residence::class)->find($id);
         $form = $this->createForm(EditResidenceType::class, $residence);
         $form->handleRequest($request);

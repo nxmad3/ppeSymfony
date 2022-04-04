@@ -21,7 +21,7 @@ class AddResidenceType extends AbstractType
             ->add('zip_code')
             ->add('country')
             ->add('invotory', FileType::class, [
-                'label' => 'Brochure (PDF file)',
+                'label' => 'PDF',
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,
@@ -44,7 +44,6 @@ class AddResidenceType extends AbstractType
             ])
             // ...
             ->add('image', FileType::class, [
-                'label' => 'Brochure (PDF file)',
 
                 // unmapped means that this field is not associated to any entity property
                 'mapped' => false,

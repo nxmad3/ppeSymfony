@@ -1,14 +1,32 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div style="margin-left: 10%;margin-top:8%;float: left;">
-
-        <h1 style="color: #9F5540">{{ residence.name }}</h1>
-        {{ form_start(form, { attr: { id: 'form-edit_owner', novalidate: 'novalidate' } }) }}
-        {{ form_row(form) }}
-        <button style="margin-top: 3%" class="btn btn-success" type="submit">Mettre à jour les données</button>
-        {% for message in app.flashes('success') %}
-            <div class="alert alert-success">
-                {{ message }}
+<div style="margin-left: 10%;margin-top:3%;float: left;">
+    <div class="card mb-3" style="max-width: 1000px;border: none; margin-left:3%;">
+        <div style="float: left; width:1%;"></div>
+        <div class="row g-0">
+            <div class="col-md-4">
+                <img class="img-fluid rounded-start" alt="..." src="">
+                {{ form_start(form, { attr: { id: 'form-edit_owner', novalidate: 'novalidate' } }) }}
+                {{ form_row(form.name) }}
+                <div style="float: left">{{ form_row(form.city) }}{{ form_row(form.zip_code) }}</div>
+                {{ form_row(form.country) }}
+                {{ form_row(form) }}
+                <button style="margin-top: 3%" class="btn btn-success" type="submit">Mettre à jour les données
+                </button>
+                {% for message in app.flashes('success') %}
+                    <div class="alert alert-success">
+                        {{ message }}
+                    </div>
+                {% endfor %}
             </div>
-        {% endfor %}
-{% endblock %}
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h1 style="color: #9F5540">{{ residence.name }}</h1>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endblock %}

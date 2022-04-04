@@ -1,7 +1,12 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
-    <h3 style="color: #9F5540"> {{ nb[1] }} bien <a class="btn btn-success" href="/addResidence">ajouter</a></h3>    <div class="card mb-3" style="max-width: 540px;">
+    <style>
+        p{
+            margin: 0;
+        }
+    </style>
+    <h3 style="color: #9F5540"> {{ nb[1] }} bien <a class="btn btn-success" href="/addResidence">Ajouter un bien</a></h3>
+    <div class="card mb-3" style="max-width: 800px;border: none; margin-left:3%; margin-top:3%;">
     {% for residence in residences %}
 
         <div style="float: left; width:1%;"></div>
@@ -11,16 +16,15 @@
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
+                            <h5 class="card-title" style="color: #9F5540">{{ residence[0].residenceName }}</h5>
+                            <p style="font-size:60%;margin-bottom: 2%" class="card-text">disponible : {{ residence[0].arrival_date|date('d/m/Y') }}
 
-                            <h5 class="card-title" style="color: #9F5540">{{ residence[0].residenceName }} <a href="/editresidence/{{ residence[0].residenceId }}" class="btn" style="color: #9F5540">accede</a></h5>
-                            <p class="card-text">disponible : {{ residence[0].arrival_date|date('d/m/Y') }}
-                            <p>gerer par : {{ residence[0].name }}{{ residence[0].lastName }}</p>
-
-                    {% if residence[0].tenantId == null %}
+                    <p>{% if residence[0].tenantId == null %}
             Non occupé
             {% else %}
-            <br>Actuellement occupé
-            <br>{{ residence[0].nbLocationTotal }}
+                Actuellement occupé &nbsp&nbsp&nbsp&nbsp gerer par : {{ residence[0].name }}{{ residence[0].lastName }}</p>
+                <p>{{ residence[0].nbLocationTotal }} locations au total </p>
+                <br><a href="/editresidence/{{ residence[0].residenceId }}" class="btn" style="background-color: #9F5540;color: white;border-radius: 30%">Accéder à la location</a>
                         </div>
                     </div>
                 </div>
