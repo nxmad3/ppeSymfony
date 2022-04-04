@@ -35,6 +35,7 @@ class RentRepository extends ServiceEntityRepository
         return $val;
     }
 
+
     public function getIdResidences(): array
     {
         return $this->createQueryBuilder('rent')

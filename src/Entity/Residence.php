@@ -171,27 +171,6 @@ class Residence
 
         return $this;
     }
-    public function addImage(File $file): self
-    {
-        if (!$this->file->contains($file)) {
-            $this->file[] = $file;
-            $file->setAnnonces($this);
-        }
-
-        return $this;
-    }
-    public function removeImage(File $file): self
-    {
-        if ($this->file->contains($file)) {
-            $this->file->removeElement($file);
-            // set the owning side to null (unless already changed)
-            if ($file->getAnnonces() === $this) {
-                $file->setAnnonces(null);
-            }
-        }
-
-        return $this;
-    }
 
 
     /**

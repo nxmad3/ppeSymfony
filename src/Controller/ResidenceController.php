@@ -16,6 +16,7 @@ use Faker\Factory;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
@@ -25,6 +26,8 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Service\FileUploader;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Validator\Constraints\File;
+
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -40,6 +43,7 @@ class ResidenceController extends AbstractController
             return $this->render('residence/index.html.twig',[
                 'residences'=>$residences,
                 'nb' => $nb,
+
             ]);
         }
         return $this->render('login/index.html.twig');
@@ -47,21 +51,60 @@ class ResidenceController extends AbstractController
     #[Route('/editresidence/{id}', name: 'editresidence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
     public function editresidence(int $id, Request $request,SluggerInterface $slugger, KernelInterface $appKernel,EntityManagerInterface $entityManager): Response
     {
+
         $residence = $this->getDoctrine()->getRepository(Residence::class)->find($id);
         $form = $this->createForm(EditResidenceType::class, $residence);
         $form->handleRequest($request);
+
         $entityManager = $this->getDoctrine()->getManager();
 
-
         if ($form->isSubmitted() && $form->isValid()) {
-            $file=$request->files->get("edit_residence");
-            $inventory_file = $file["inventory_file"];
-            $photo_file = $file["file"];
-            $targetDir = $appKernel->getProjectDir() . "/public/uploads";
-            $fileUploader = new FileUploader($targetDir, $slugger);
-            $residence
-                ->setInventoryFile($fileUploader->upload($inventory_file))
-                ->setFile($fileUploader->upload($photo_file));
+            $inv = $form->get('invotory')->getData();
+
+            if ($inv)
+            {
+                $originalFilename = pathinfo($inv->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$inv->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $inv->move(
+                        'uploads',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $residence->setInventoryFile($newFilename);
+            }
+            $file = $form->get('image')->getData();
+
+            if ($file)
+            {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        'uploads',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $residence->setFile($newFilename);
+            }
             $entityManager->persist($residence);
             $entityManager->flush();
         }
@@ -77,14 +120,52 @@ class ResidenceController extends AbstractController
         $form = $this->createForm(AddResidenceType::class, $residence);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $file=$request->files->get("add_residence");
-            $inventory_file = $file["inventory_file"];
-            $photo_file = $file["file"];
-            $targetDir = $appKernel->getProjectDir() . "/public/uploads";
-            $fileUploader = new FileUploader($targetDir, $slugger);
-            $residence
-                ->setInventoryFile($fileUploader->upload($inventory_file))
-                ->setFile($fileUploader->upload($photo_file));
+            $file = $form->get('image')->getData();
+
+            if ($file)
+            {
+                $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $file->move(
+                        'uploads',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $residence->setFile($newFilename);
+            }
+            $inv = $form->get('invotory')->getData();
+
+            if ($inv)
+            {
+                $originalFilename = pathinfo($inv->getClientOriginalName(), PATHINFO_FILENAME);
+                // this is needed to safely include the file name as part of the URL
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$inv->guessExtension();
+
+                // Move the file to the directory where brochures are stored
+                try {
+                    $inv->move(
+                        'uploads',
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    // ... handle exception if something happens during file upload
+                }
+
+                // updates the 'brochureFilename' property to store the PDF file name
+                // instead of its contents
+                $residence->setInventoryFile($newFilename);
+            }
             $entityManager->persist($residence);
             $entityManager->flush();
         }

@@ -31,6 +31,16 @@ class ResidenceRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public function GetResidenceedit($value): array
+    {
+        return $this->createQueryBuilder('r')
+            ->select("r.address, r.name, r.city, r.zip_code, r.country")
+            ->Where('r.id = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function GetTotalResidence(): array
     {
         return $this->createQueryBuilder('r')
