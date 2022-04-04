@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Rent;
 use App\Entity\Residence;
 use App\Entity\User;
+use App\Form\AddLocationTenantFormType;
 use App\Form\AddRepresentativeForm;
 use App\Form\AddResidenceType;
 use App\Form\EditRepresentativeFormType;
@@ -24,11 +25,12 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use App\Service\FileUploader;
 use Symfony\Component\HttpKernel\KernelInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
-
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ResidenceController extends AbstractController
 {
-    #[Route('/residence', name: 'residence')]
+    #[Route('/residence', name: 'residence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
     public function index(): Response
     {
         if($this->getUser()){
@@ -42,7 +44,7 @@ class ResidenceController extends AbstractController
         }
         return $this->render('login/index.html.twig');
     }
-    #[Route('/editresidence/{id}', name: 'editresidence')]
+    #[Route('/editresidence/{id}', name: 'editresidence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
     public function editresidence(int $id, Request $request,SluggerInterface $slugger, KernelInterface $appKernel,EntityManagerInterface $entityManager): Response
     {
         $residence = $this->getDoctrine()->getRepository(Residence::class)->find($id);
@@ -68,7 +70,7 @@ class ResidenceController extends AbstractController
             'residence'=>$residence,
         ]);
     }
-    #[Route('/addResidence', name: 'addResidence')]
+    #[Route('/addResidence', name: 'addResidence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
     public function addResidence(Request $request, SluggerInterface $slugger, KernelInterface $appKernel,EntityManagerInterface $entityManager)
     {
         $residence = new Residence();

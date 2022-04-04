@@ -86,6 +86,15 @@ class RentRepository extends ServiceEntityRepository
         return $val;
     }
 
+    public function findLocationByUser(int $id)
+    {
+        return $this->createQueryBuilder('r')
+            ->where('r.arrival_date >= :val')
+            ->setParameter('val', $id)
+            ->getQuery()
+            ->getResult();
+    }
+
     // /**
     //  * @return Rent[] Returns an array of Rent objects
     //  */

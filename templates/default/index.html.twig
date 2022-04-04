@@ -7,14 +7,14 @@
         <h3>{{ user.name }} {{ user.lastName }} </h3>
         <p>vous êtes inscrit en tant que
             <strong>
-                {% if user.roles[0] == "owner" %}
+                {% if user.roles[0] == "ROLE_OWNER" %}
                     bailleur
                 {% endif %}
-                {% if user.roles[0] == "representative" %}
-                    locataire
-                {% endif %}
-                {% if user.roles[0] == "tenant" %}
+                {% if user.roles[0] == "ROLE_REPRESENTATIVE" %}
                     mandataire
+                {% endif %}
+                {% if user.roles[0] == "ROLE_tenant" %}
+                    locataire
                 {% endif %}
             </strong> que la plateforme</p>
         <h2>Actions :</h2>

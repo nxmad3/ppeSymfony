@@ -28,6 +28,7 @@ class OwnerController extends AbstractController
     public function index(Request $request): Response
     {
         $users = $this->getDoctrine()->getRepository(User::class)->findUserByRole(User::OWNER);
+        dd($users);
 
         return $this->render('owner/index.html.twig', [
             'users' => $users,

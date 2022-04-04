@@ -26,7 +26,7 @@ class UserFixtures extends Fixture
 
             if ($i <= 3) {
                 $user = new User();
-                $user->setRoles(array("representative"));
+                $user->setRoles(array("ROLE_REPRESENTATIVE"));
                 $user->setEmail("representative" . $i . "@root.fr");
                 $user->setIsVerified(false);
                 $user->setName("test");
@@ -38,7 +38,7 @@ class UserFixtures extends Fixture
                 $manager->persist($user);
             } elseif ($i <= 6) {
                 $user = new User();
-                $user->setRoles(array("tenant"));
+                $user->setRoles(array("ROLE_TENANT"));
                 $user->setEmail("tenant" . $i . "@root.fr");
                 $user->setIsVerified(false);
                 $user->setName("test");
@@ -51,7 +51,7 @@ class UserFixtures extends Fixture
             } elseif ($i <= 8) {
                 $user = new User();
 
-                $user->setRoles(array("owner"));
+                $user->setRoles(array("ROLE_OWNER"));
                 $user->setEmail("owner" . $i . "@root.fr");
                 $user->setIsVerified(false);
                 $user->setName("test");

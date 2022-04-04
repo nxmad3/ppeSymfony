@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -10,9 +12,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    public const OWNER = '["owner"]';
-    public const TENANT = '["tenant"]';
-    public const REPRESENTATIVE = '["representative"]';
+    public const OWNER = '["ROLE_OWNER"]';
+    public const TENANT = '["ROLE_TENANT"]';
+    public const REPRESENTATIVE = '["ROLE_REPRESENTATIVE"]';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -36,6 +38,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string')]
     private $lastName;
+
+    #[ORM\OneToMany(mappedBy: 'representative', targetEntity: Residence::class, cascade: ['persist'])]
+    private Collection $representativeResidences;
+
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Residence::class, cascade: ['persist'])]
+    private Collection $ownedResidences;
+
+    public function __construct()
+    {
+        $this->representativeResidences = new ArrayCollection();
+        $this->ownedResidences = new ArrayCollection();
+    }
 
 
     public function getId(): ?int
@@ -163,4 +177,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // TODO: Implement getUsername() method.
     }
+
+    /**
+     * @return mixed
+     */
+    public function getRepresentativeResidences(): Collection
+    {
+        return $this->representativeResidences;
+    }
+
+    /**
+     * @param mixed $representativeResidences
+     */
+    public function setRepresentativeResidences(Collection $representativeResidences): void
+    {
+        $this->representativeResidences = $representativeResidences;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getOwnedResidences(): Collection
+    {
+        return $this->ownedResidences;
+    }
+
+    /**
+     * @param ArrayCollection $ownedResidences
+     */
+    public function setOwnedResidences(ArrayCollection $ownedResidences): void
+    {
+        $this->ownedResidences = $ownedResidences;
+    }
+
+
 }

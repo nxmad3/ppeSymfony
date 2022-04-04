@@ -7,6 +7,7 @@ use App\Entity\Residence;
 use App\Entity\User;
 use App\Form\AddRepresentativeForm;
 use App\Form\AddTenantFormType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Form\EditOwnerFormType;
 use App\Form\EditRepresentativeFormType;
 use Faker\Factory;
@@ -17,10 +18,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class RepresentativeController extends AbstractController
 {
-    #[Route('/representative', name: 'representative')]
+    #[Route('/representative', name: 'representative') ,security( "is_granted('ROLE_OWNER')" )]
     public function index(): Response
     {
         if ($this->getUser()) {
@@ -46,10 +48,9 @@ class RepresentativeController extends AbstractController
         return $this->render('login/index.html.twig');
     }
 
-    #[Route('/editrepresentative/{id}', name: 'editrepresentative')]
+        #[Route('/editrepresentative/{id}', name: 'editrepresentative'), security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
     public function editrepresentative(int $id, Request $request): Response
-    {
-        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+    {$user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(EditRepresentativeFormType::class, $user);
         $form->handleRequest($request);
         $entityManager = $this->getDoctrine()->getManager();
@@ -59,11 +60,11 @@ class RepresentativeController extends AbstractController
         }
         return $this->renderForm('representative/edit.html.twig', [
             'form' => $form,
-            'user'=>$this->getUser(),
+            'user'=>$user,
         ]);
     }
 
-    #[Route('/addRepresentative', name: 'addRepresentative')]
+    #[Route('/addRepresentative', name: 'addRepresentative' ), security(" is_granted('ROLE_OWNER')")]
     public function addRepresentative(Request $request,MailerInterface $mailer,UserPasswordHasherInterface $hasher): Response
     {
         $user = new User();

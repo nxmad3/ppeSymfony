@@ -8,7 +8,12 @@
         <button style="margin-top: 3%" class="btn btn-success" type="submit">Ajouter</button>
     </div>
     <div style="margin-right: 15%;margin-top:8%;float: right">
-        <h1 style="color: #9F5540;margin-bottom: 3%;">Liste des locations <button style="margin-top: 3%" class="btn btn-success" type="submit">Ajouter</button></h1>
-
+        <h1 style="color: #9F5540;margin-bottom: 3%;">Liste des locations <a type="button" href="{{ path('addTenantLocation', {'id':  user.id  }) }}" style="margin-top: 3%" class="btn btn-success" type="submit">Ajouter</a></h1>
+        {% for location in locations %}
+           <div> {{ location.residence.name }}
+           du {{ location.arrivalDate|date('d/m/Y') }} au {{ location.departureDate|date('d/m/Y') }}
+           géré par {{ location.residence.representative.name }} {{ location.residence.representative.lastName }}
+           </div>
+        {% endfor %}
     </div>
 {% endblock %}

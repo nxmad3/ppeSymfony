@@ -31,11 +31,14 @@ class Residence
     #[ORM\Column(type: 'string', length: 255)]
     private $inventory_file;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'residences')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ownedResidences')]
+    #[ORM\JoinColumn(name: "owner_id", referencedColumnName: "id", nullable: true)]
     private $owner;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'residences')]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'representativeResidences')]
+    #[ORM\JoinColumn(name: "representative_id", referencedColumnName: "id", nullable: true)]
     private $representative;
+
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $file;
@@ -190,4 +193,20 @@ class Residence
         return $this;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+
+    /**
+     * @param mixed $owner
+     */
+    public function setOwner($owner): void
+    {
+        $this->owner = $owner;
+    }
 }
