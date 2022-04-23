@@ -25,6 +25,7 @@ class AddLocationTenantFormType extends AbstractType
             ])
             ->add('arrivalDate', DateType::class, [
                 'widget' => 'single_text',
+                'label'=>'Début de la location',
                 'format' => 'yyyy-MM-dd',
                 'attr' => [
                     'class' => 'js-datepicker',
@@ -34,6 +35,7 @@ class AddLocationTenantFormType extends AbstractType
             ->add('departureDate', DateType::class, [
                 'widget' => 'single_text',
                 'format' => 'yyyy-MM-dd',
+                'label'=>'Fin de la location',
                 'attr' => [
                     'class' => 'js-datepicker',
                     'autocomplete' => 'off',

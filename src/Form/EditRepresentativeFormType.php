@@ -16,11 +16,12 @@ class EditRepresentativeFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('lastname')
-            ->add('email', EmailType::class)
+            ->add('name',TextType::class,['label' => 'Nom'])
+            ->add('lastname',TextType::class,['label' => 'Prénom'])
+            ->add('email', EmailType::class,['label' => 'Email'])
             ->add('representativeResidences', EntityType::class, [
                 'class' => Residence::class,
+                'label' => 'Location gérées',
                 'multiple' => true,
                 'choice_label' => 'name',
                 'choice_value' => 'id',
