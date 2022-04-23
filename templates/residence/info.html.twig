@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form, { attr: { id: 'form-info_owner', novalidate: 'novalidate' } }) }}
+    <div>
+        {{ form_row(form) }}
+        <button class="btn btn-success" style="margin-top: 3%"type="submit">Ajouter</button>
+    </div>
+
+    {% set comfirme = false %}
+    <div class="card text-white bg-success mb-3 float-start ms-2 mt-2" style="max-width: 18rem;">
+        <div class="card-header">Arrivée du locataire</div>
+        <div class="card-body">
+            <h5 class="card-title">Arrivé le {{ residence.arrivalDate|date("m/d/Y") }}</h5>
+            <p class="card-text">Le locataire est arrivé à la résidence.
+            </p>
+        </div>
+    </div>
+    <div class="card text-white
+     {% if residence.tenantSignature ==  null %}
+      {% set comfirme = false %}
+        bg-warning
+     {% else %}
+          {% set comfirme = true %}
+        bg-success
+     {% endif %}
+         mb-3 float-start ms-2 mt-2"
+         style="max-width: 18rem;">
+        <div class="card-header">Signature de l’inventaire</div>
+        <div class="card-body">
+            <h5 class="card-title">A signer le {{ residence.arrivalDate|date("m/d/Y") }}</h5>
+            <p class="card-text">par le mandataire sans commentaire.
+            </p>
+        </div>
+    </div>
+    <div class="card text-white
+    {% if comfirme == true %}
+         {% if residence.tenantSignature ==  null %}
+         {% set comfirme = false %}
+        bg-warning
+     {% else %}
+          {% set comfirme = true %}
+        bg-success
+         {% endif %}
+    {% else %}
+    bg-secondary
+    {% endif %}
+         mb-3 float-start ms-2 mt-2"
+         style="max-width: 18rem;">
+        <div class="card-header">Signature de l’inventaire</div>
+        <div class="card-body">
+            <h5 class="card-title">A signer le {{ residence.arrivalDate|date("m/d/Y") }}</h5>
+            <p class="card-text">par le mandataire sans
+                commentaire.
+            </p>
+        </div>
+    </div>
+    <div class="card text-white
+    {% if comfirme == true %}
+         {% if residence.tenantSignature ==  null %}
+         {% set comfirme = false %}
+        bg-warning
+     {% else %}
+          {% set comfirme = true %}
+        bg-success
+         {% endif %}
+    {% else %}
+    bg-secondary
+    {% endif %}
+         mb-3 float-start ms-2 mt-2"
+         style="max-width: 18rem;">
+        <div class="card-header">Signature de l’inventaire</div>
+        <div class="card-body">
+            <h5 class="card-title">A signer le {{ residence.departureDate|date("m/d/Y") }}</h5>
+            <p class="card-text">par le locataire.
+            </p>
+        </div>
+    </div>
+    <div class="card text-white
+    {% if comfirme == true %}
+         {% if residence.tenantSignature ==  null %}
+         {% set comfirme = false %}
+        bg-warning
+     {% else %}
+          {% set comfirme = true %}
+        bg-success
+         {% endif %}
+    {% else %}
+    bg-secondary
+    {% endif %}
+         mb-3 float-start ms-2 mt-2"
+         style="max-width: 18rem;">
+        <div class="card-header">Signature fin état
+            des lieux de l’inventaire</div>
+        <div class="card-body">
+            <h5 class="card-title">A signer le {{ residence.departureDate|date("m/d/Y") }}</h5>
+            <p class="card-text">par le mandataire.
+            </p>
+        </div>
+    </div>
+{% endblock %}
+

@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Rent;
 use App\Entity\Residence;
+use App\Form\CommentaireResidenceType;
+use App\Repository\RentRepository;
 use App\Entity\User;
 use App\Form\AddLocationTenantFormType;
 use App\Form\AddRepresentativeForm;
@@ -33,7 +35,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class ResidenceController extends AbstractController
 {
-    #[Route('/residence', name: 'residence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
+    #[Route('/residence', name: 'residence') , security("is_granted('ROLE_OWNER')")]
     public function index(): Response
     {
         if($this->getUser()){
@@ -173,5 +175,17 @@ class ResidenceController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
+    #[Route('/infoResidence/{id}', name: 'infoResidence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER') or is_granted('ROLE_TENANT')")]
+    public function deleteResidence(int $id, Request $request,SluggerInterface $slugger, KernelInterface $appKernel,EntityManagerInterface $entityManager): Response
+    {
+        $residence = $this->getDoctrine()->getRepository(Rent::class)->findAllRentsById(2)  ;
+        $form = $this->createForm(CommentaireResidenceType::class, $residence);
+        $form->handleRequest($request);
+        $entityManager->persist($residence);
+        $entityManager->flush();
+        return $this->renderForm('residence/info.html.twig', [
+            'form' => $form,
+            'residence' => $residence,
+        ]);
+    }
 }

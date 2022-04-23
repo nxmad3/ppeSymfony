@@ -49,7 +49,7 @@ class RepresentativeController extends AbstractController
         return $this->render('login/index.html.twig');
     }
 
-        #[Route('/editrepresentative/{id}', name: 'editrepresentative'), security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
+        #[Route('/editrepresentative/{id}', name: 'editrepresentative'), security("is_granted('ROLE_OWNER')")]
     public function editrepresentative(int $id, Request $request): Response
     {$user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(EditRepresentativeFormType::class, $user);

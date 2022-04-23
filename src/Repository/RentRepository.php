@@ -19,6 +19,17 @@ class RentRepository extends ServiceEntityRepository
         parent::__construct($registry, Rent::class);
     }
 
+    public function findAllRentsById(int $id)
+    {
+        return $this->createQueryBuilder('r')
+            ->andWhere('r.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+
     public function GetRent($idResidences): array
     {
         foreach ($idResidences as $key => $idResidence) {

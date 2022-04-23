@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ResidenceRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Faker\Core\File;
 
 #[ORM\Entity(repositoryClass: ResidenceRepository::class)]
 class Residence

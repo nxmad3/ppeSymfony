@@ -3,14 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Rent;
+use App\Entity\Residence;
 use App\Entity\User;
 use App\Form\AddLocationTenantFormType;
 use App\Form\AddTenantFormType;
 use App\Form\EditOwnerForm;
 use App\Controller\Faker;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Faker\Factory;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
@@ -25,7 +28,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class  TenantController extends AbstractController
 {
-    #[Route('/tenant-list', name: 'tenant-list') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
+    #[Route('/tenant-list', name: 'tenant-list'), security("is_granted('ROLE_OWNER')")]
     public function index(): Response
     {
         if ($this->getUser()) {
@@ -37,7 +40,7 @@ class  TenantController extends AbstractController
         return $this->render('login/index.html.twig');
     }
 
-    #[Route('/edittenant/{id}', name: 'edittenant') , security("is_granted('ROLE_TENANT') or is_granted('ROLE_OWNER')")]
+    #[Route('/edittenant/{id}', name: 'edittenant'), security(" is_granted('ROLE_OWNER')")]
     public function edittenant(int $id, Request $request, UserPasswordHasherInterface $hasher): Response
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
@@ -56,12 +59,12 @@ class  TenantController extends AbstractController
         return $this->renderForm('tenant/edit.html.twig', [
             'form' => $form,
             'locations' => $locations,
-            'user'=>$user,
+            'user' => $user,
         ]);
     }
 
-    #[Route('/addtenant', name: 'addtenant') , security(" is_granted('ROLE_OWNER')")]
-    public function addtenant(Request $request,MailerInterface $mailer,UserPasswordHasherInterface $hasher): Response
+    #[Route('/addtenant', name: 'addtenant'), security(" is_granted('ROLE_OWNER')")]
+    public function addtenant(Request $request, MailerInterface $mailer, UserPasswordHasherInterface $hasher): Response
     {
         $user = new User();
         $form = $this->createForm(AddTenantFormType::class, $user);
@@ -97,8 +100,10 @@ class  TenantController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-    #[Route('/addTenantLocation/{id}', name: 'addTenantLocation') , security("is_granted('ROLE_TENANT') or is_granted('ROLE_OWNER')")]
-    public function addTenantLocation(int $id , Request $request): Response{
+
+    #[Route('/addTenantLocation/{id}', name: 'addTenantLocation'), security(" is_granted('ROLE_OWNER')")]
+    public function addTenantLocation(int $id, Request $request): Response
+    {
         $rent = new Rent();
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(AddLocationTenantFormType::class, $rent);
@@ -109,7 +114,7 @@ class  TenantController extends AbstractController
         }
         return $this->renderForm('tenant/addTenantLocation.html.twig', [
             'form' => $form,
-            'user'=>$user,
+            'user' => $user,
         ]);;
     }
 }
