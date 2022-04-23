@@ -23,10 +23,10 @@ class AddTenantFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
-            ->add('lastname')
-            ->add('email', EmailType::class)
-            ->add('name')
+            ->add('name', TextType::class, ['label' => 'Nom'])
+            ->add('lastname', TextType::class, ['label' => 'Prénom'])
+            ->add('email', EmailType::class, ['label' => 'Email'])
+            ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('isVerified', HiddenType::class , [
                 "data"=>1
             ]);
