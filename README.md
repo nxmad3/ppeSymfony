@@ -21,7 +21,7 @@ End of December 2021 to April 25, 2022.
 clone the project 
 
         git clone https://github.com/nxmad3/ppeSymfony.git
-        cd SUPER_PORTFOLIO-UwU
+        cd ppeSymfony
 
 type this command to install and build the project
 
