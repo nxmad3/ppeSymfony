@@ -11,7 +11,7 @@
         <div style="float: left; width:1%;"></div>
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img class="img-fluid rounded-start" alt="..." src="uploads/{{ residence[0].residenceFile}}">
+                        <img class="img-fluid rounded-start" alt="..." src="/uploads/{{ residence[0].residenceFile}}">
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -33,8 +33,6 @@
                     </div>
                 </div>
             </div>
-
-
-
     {% endfor %}
+    {{ knp_pagination_render(residences) }}
 {% endblock %}

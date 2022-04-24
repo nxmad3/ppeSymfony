@@ -16,6 +16,7 @@ use App\Form\EditResidenceType;
 use App\Form\EditTenantFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Faker\Factory;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -37,29 +38,37 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 class ResidenceController extends AbstractController
 {
     #[Route('/residence', name: 'residence') , security("is_granted('ROLE_OWNER')")]
-    public function index(): Response
+    public function index(Request $request, PaginatorInterface $paginator): Response
     {
         if($this->getUser()){
             $idResidences = $this->getDoctrine()->getRepository(Residence::class)->findAll();
             $residences = $this->getDoctrine()->getRepository(Rent::class)->GetRent($idResidences);
+            $paginationsResidence = $paginator->paginate(
+                $residences,
+                $request->query->getInt('page', 1),
+                10
+            );
             return $this->render('residence/index.html.twig',[
-                'residences'=>$residences,
+                'residences'=>$paginationsResidence,
                 'nb' => $idResidences
-
             ]);
         }
         return $this->render('login/index.html.twig');
     }
     #[Route('/residence/{id}', name: 'residenceId') , security("is_granted('ROLE_OWNER') or is_granted('ROLE_REPRESENTATIVE')")]
-    public function residenceint(int $id): Response
+    public function residenceint(int $id, Request $request, PaginatorInterface $paginator): Response
     {
         if($this->getUser()){
             $idResidences = $this->getDoctrine()->getRepository(Residence::class)->GetResidence($id);
             $residences = $this->getDoctrine()->getRepository(Rent::class)->GetRent($idResidences);
+            $paginationsResidence = $paginator->paginate(
+                $residences,
+                $request->query->getInt('page', 1),
+                10
+            );
             return $this->render('residence/index.html.twig',[
-                'residences'=>$residences,
+                'residences'=>$paginationsResidence,
                 'nb' => $idResidences
-
             ]);
         }
         return $this->render('login/index.html.twig');

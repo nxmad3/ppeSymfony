@@ -1,32 +1,37 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <div style="margin-left: 8%;margin-top:6%;float: left;">
-        <h1 style="color: #9F5540;margin-bottom: 3%;">{{ user.name }} {{ user.lastName }}</h1>
+    <div>
+        <div style="margin-left: 8%;margin-top:6%;float: left;">
+            <h1 style="color: #9F5540;margin-bottom: 3%;">{{ user.name }} {{ user.lastName }}</h1>
 
-        {{ form_start(form, { attr: { id: 'form-edit_tenant', novalidate: 'novalidate' } }) }}
-        {{ form_row(form) }}
-        <button style="margin-top: 3%" class="btn btn-success" type="submit">Mettre à jour</button>
-    </div>
-    <div style="margin-right: 15%;margin-top:8%;float: right">
-        <h1 style="color: #9F5540;margin-bottom: 3%;">Liste des locations <a type="button" href="{{ path('addTenantLocation', {'id':  user.id  }) }}" style="margin-top: 3%" class="btn btn-success" type="submit">Ajouter</a></h1>
-    <div class="card mb-3" style="max-width: 800px;border: none;">
-        <div class="row g-0">
-            <div class="col-md-4">
-                <img class="img-fluid rounded-start" alt="..." src="">
-            </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                        {% for location in locations %}
-                    <div style="color: #9F5540"> {{ location.residence.name }}</div>
-                    <div style="font-size: 60%">
-                        du {{ location.arrivalDate|date('d/m/Y') }} au {{ location.departureDate|date('d/m/Y') }}<br>
-                        géré par {{ location.residence.representative.name }} {{ location.residence.representative.lastName }}
-                        <br><a href="/residence" class="btn" style="background-color: #9F5540;color: white;border-radius: 20%">Accéder à la location</a>
+            {{ form_start(form, { attr: { id: 'form-edit_tenant', novalidate: 'novalidate' } }) }}
+            {{ form_row(form) }}
+            <button style="margin-top: 3%" class="btn btn-success" type="submit">Mettre à jour</button>
+        </div>
+        <div style="margin-right: 15%;margin-top:8%;float: right">
+            <h1 style="color: #9F5540;margin-bottom: 3%;">Liste des locations <a type="button" href="{{ path('addTenantLocation', {'id':  user.id  }) }}" style="margin-top: 3%" class="btn btn-success" type="submit">Ajouter</a></h1>
+            <div class="card mb-3" style="max-width: 800px;border: none;">
+                {% for location in locations %}
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img class="img-fluid rounded-start" alt="..." src="/uploads/{{ location.residence.file }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <div style="color: #9F5540"> {{ location.residence.name }}</div>
+                                <div style="font-size: 60%">
+                                    du {{ location.arrivalDate|date('d/m/Y') }}
+                                    au {{ location.departureDate|date('d/m/Y') }}<br>
+                                    géré
+                                    par {{ location.residence.representative.name }} {{ location.residence.representative.lastName }}
+                                    <br><a href="{{ path('infoResidence', {'id': location.id}) }}" class="btn" style="background-color: #9F5540;color: white;border-radius: 20%">Accéder à la location</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    {% endfor %}
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-        {% endblock %}
+{% endblock %}
 
