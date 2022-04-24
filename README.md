@@ -17,8 +17,13 @@ Create a rental management platform.
 End of December 2021 to April 25, 2022.
 
 ## How to launch the project ?
+        
+clone the project 
 
-First type this command to install and build the project
+        git clone https://github.com/nxmad3/ppeSymfony.git
+        cd SUPER_PORTFOLIO-UwU
+
+type this command to install and build the project
 
         npm install
         npm run build
