@@ -8,7 +8,8 @@ use Symfony\Component\{Form\AbstractType,
     Form\FormBuilderInterface,
     OptionsResolver\OptionsResolver,
     Form\Extension\Core\Type\EmailType,
-    Form\Extension\Core\Type\TextType};
+    Form\Extension\Core\Type\TextType
+};
 
 
 class EditRepresentativeFormType extends AbstractType
@@ -16,15 +17,15 @@ class EditRepresentativeFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',TextType::class,['label' => 'Nom'])
-            ->add('lastname',TextType::class,['label' => 'Prénom'])
-            ->add('email', EmailType::class,['label' => 'Email'])
-            ->add('representativeResidences', EntityType::class, [
+            ->add('name', TextType::class, ['label' => 'Nom'])
+            ->add('lastname', TextType::class, ['label' => 'Prénom'])
+            ->add('email', EmailType::class, ['label' => 'Email'])
+            ->add('residenceOwner', EntityType::class, [
                 'class' => Residence::class,
                 'label' => 'Location gérées',
-                'multiple' => true,
                 'choice_label' => 'name',
-                'choice_value' => 'id',
+                'multiple' => true,
+                'expanded'=>true,
             ]);
     }
 

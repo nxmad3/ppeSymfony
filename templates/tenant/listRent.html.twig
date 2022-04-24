@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date entrée</th>
+            <th scope="col">Date sortie</th>
+            <th scope="col">nom de la residence</th>
+            <th scope="col">action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for rent in rents %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ rent.arrivalDate|date("d/m/Y") }}</td>
+                <td>{{ rent.departureDate|date("d/m/Y") }}</td>
+                <td>{{ rent.residence.name }}</td>
+                <td>
+                    <a  href="{{ path('infoResidence', {'id': rent.id}) }}" type="button" class="btn " style="background-color: #9F5540 ;color: white">
+                        Acceder
+                    </a>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+

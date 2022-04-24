@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div style="margin-left: 8%;margin-top: 2%">
+        {{ form_start(form, { attr: { id: 'form-add_location_tenant', novalidate: 'novalidate' } }) }}
+        {{ form_row(form) }}
+        <button style="margin-top: 3%" class="btn btn-success" type="submit">Ajouter une location</button>
+    </div>
+
+{% endblock %}

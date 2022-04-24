@@ -18,9 +18,7 @@ class Rent
 
     #[ORM\ManyToOne(targetEntity: Residence::class, cascade: ['persist', 'remove'])]
     private $residence;
-
-
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255 , nullable: true)]
     private $inventory_file;
 
     #[ORM\Column(type: 'datetime')]
@@ -29,23 +27,26 @@ class Rent
     #[ORM\Column(type: 'datetime')]
     private $departure_date;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'text' , nullable: true)]
     private $tenant_cillents;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255 , nullable: true)]
     private $tenant_signature;
 
-    #[ORM\Column(type: 'string', length: 45)]
+    #[ORM\Column(type: 'string', length: 45 , nullable: true) ]
     private $tenant_validated_at;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'text' , nullable: true)]
     private $represntative_comments;
 
-    #[ORM\Column(type: 'string', length: 255)]
+    #[ORM\Column(type: 'string', length: 255 , nullable: true)]
     private $represntative_signature;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime' , nullable: true)]
     private $represntative_validated_at;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'Representative')]
+    private $Representative;
 
     public function getId(): ?int
     {
@@ -230,5 +231,17 @@ class Rent
     public function setOwner($owner): void
     {
         $this->owner = $owner;
+    }
+
+    public function getRepresentative(): ?User
+    {
+        return $this->Representative;
+    }
+
+    public function setRepresentative(?User $Representative): self
+    {
+        $this->Representative = $Representative;
+
+        return $this;
     }
 }

@@ -14,15 +14,11 @@ use Symfony\Component\{Form\AbstractType,
 
 
 
-class AddLocationTenantFormType extends AbstractType
+class AddLocationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('residence', EntityType::class, [
-                'class' => Residence::class,
-                'choice_label' => 'name',
-            ])
             ->add('arrivalDate', DateType::class, [
                 'widget' => 'single_text',
                 'label'=>'Début de la location',

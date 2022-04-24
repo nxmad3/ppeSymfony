@@ -28,8 +28,6 @@ class RentRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
-
-
     public function GetRent($idResidences): array
     {
         foreach ($idResidences as $key => $idResidence) {
@@ -37,7 +35,7 @@ class RentRepository extends ServiceEntityRepository
                 ->select('count(rent.id) as nbLocationTotal ,r.name, r.lastName, rent.arrival_date, residence.name as residenceName ,t.id as tenantId, residence.id as residenceId, residence.file as residenceFile ')
                 ->innerJoin('rent.tenant', 't')
                 ->innerJoin('rent.residence', 'residence')
-                ->innerJoin('residence.representative', 'r')
+                ->innerJoin('residence.Representative', 'r')
                 ->where('rent.residence = :idResidence')
                 ->setParameter('idResidence', $idResidence)
                 ->getQuery()
@@ -45,7 +43,6 @@ class RentRepository extends ServiceEntityRepository
         }
         return $val;
     }
-
 
     public function getIdResidences(): array
     {
@@ -87,7 +84,7 @@ class RentRepository extends ServiceEntityRepository
             $val[] = $this->createQueryBuilder('r')
                 ->select('count(r.id) as totalResidence,u.name , u.lastName , u.id')
                 ->innerJoin('r.residence', 'res')
-                ->innerJoin('res.representative', 'u')
+                ->innerJoin('res.Representative', 'u')
                 ->where('r.arrival_date <= (:date)')
                 ->andWhere('u.id in (:val)')
                 ->setParameter('val', $value)
@@ -101,8 +98,8 @@ class RentRepository extends ServiceEntityRepository
     public function findLocationByUser(int $id)
     {
         return $this->createQueryBuilder('r')
-            ->where('r.arrival_date >= :val')
-            ->setParameter('val', $id)
+            ->andWhere('r.tenant = :id')
+            ->setParameter('id', $id)
             ->getQuery()
             ->getResult();
     }

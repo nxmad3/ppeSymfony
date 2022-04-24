@@ -40,7 +40,16 @@ class  TenantController extends AbstractController
         return $this->render('login/index.html.twig');
     }
 
-    #[Route('/edittenant/{id}', name: 'edittenant'), security(" is_granted('ROLE_OWNER')")]
+    #[Route('/tenant-rent', name: 'tenant-rent'), security("is_granted('ROLE_TENANT')")]
+    public function listRent(): Response
+    {
+        $rents = $this->getDoctrine()->getRepository(Rent::class)->findLocationByUser($this->getUser()->getId());
+        return $this->render('tenant/listRent.html.twig', [
+            'rents' => $rents,
+        ]);
+    }
+
+    #[Route('/edittenant/{id}', name: 'edittenant'), security(" is_granted('ROLE_OWNER') or is_granted('ROLE_TENANT')")]
     public function edittenant(int $id, Request $request, UserPasswordHasherInterface $hasher): Response
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
@@ -49,7 +58,7 @@ class  TenantController extends AbstractController
         $form->handleRequest($request);
         $entityManager = $this->getDoctrine()->getManager();
 
-        if ($form->isSubmitted() && $form->isValid())  {
+        if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $password = $hasher->hashPassword($user, $user->getPassword());
             $user->setPassword($password);
@@ -101,20 +110,26 @@ class  TenantController extends AbstractController
         ]);
     }
 
-    #[Route('/addTenantLocation/{id}', name: 'addTenantLocation'), security(" is_granted('ROLE_OWNER')")]
+    #[Route('/addTenantLocation/{id}', name: 'addTenantLocation'), security(" is_granted('ROLE_OWNER') or is_granted('ROLE_TENANT')")]
     public function addTenantLocation(int $id, Request $request): Response
     {
         $rent = new Rent();
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(AddLocationTenantFormType::class, $rent);
+        $form->handleRequest($request);
+        $rent->setTenant($user);
         $entityManager = $this->getDoctrine()->getManager();
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($rent);
             $entityManager->flush();
+            $this->addFlash('success', 'Le locataire a bien ete ajouter');
+        } else {
+            $this->addFlash('error', 'Le locataire n\'a pas ete ajouter');
         }
         return $this->renderForm('tenant/addTenantLocation.html.twig', [
             'form' => $form,
             'user' => $user,
-        ]);;
+        ]);
     }
 }

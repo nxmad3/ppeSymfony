@@ -1,57 +1,71 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle`
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {# Run `composer require symfony/webpack-encore-bundle`
            and uncomment the following Encore helpers to start using Symfony UX #}
-        {% block stylesheets %}
-            {#{{ encore_entry_link_tags('app') }}#}
+    {% block stylesheets %}
+        {# {{ encore_entry_link_tags('app') }} #}
 
-            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        {% endblock %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+              crossorigin="anonymous">
+    {% endblock %}
 
-        {% block javascripts %}
-            {#{{ encore_entry_script_tags('app') }}#}
-            <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-            <script src="https://kit.fontawesome.com/999ca12c61.js" crossorigin="anonymous"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-        {% endblock %}
+    {% block javascripts %}
+        {# {{ encore_entry_script_tags('app') }} #}
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="https://kit.fontawesome.com/999ca12c61.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+                crossorigin="anonymous"></script>
+    {% endblock %}
 
-    </head>
-    <body style="margin: 0">
-    <nav style="background-color: #9F5540; text-decoration: none; "><li>
-            <a href="http://127.0.0.1:8001"> <button style="background-color: white;margin-top: 2%; margin-bottom: 2%; width: 10%; padding-top: 1%;padding-bottom: 1%">Logo</button></a>
-            <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('index') }}">ACCUEIL</a>
-            {% if is_granted('ROLE_OWNER') %}
-                <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('residence') }}">BIENS</a>
-                <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('tenant-list') }}">LOCATAIRES</a>
-                <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('representative') }}">MANDATAIRES</a>
-            {% endif %}
-            {% if is_granted('ROLE_TENANT') %}
-                <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('residence') }}">BIENS</a>
-            {% endif %}
-            {% if is_granted('ROLE_REPRESENTATIVE') %}
-                <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('residence') }}">BIENS</a>
-                <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('editrepresentative', {'id': app.user.id}) }}">MANDATAIRES</a>
-            {% endif %}
-            <a style="color: white; margin-left: 25%; text-decoration: none" href="{{ path('profil') }}"><i class="fas fa-user-circle"></i>MON PROFIL</a>
-            <a style="color: white;margin-left: 3%; text-decoration: none" href="/logout"><i class="fa-solid fa-code"></i></a>
-        </li>
-    </nav>
-        {% block body %}{% endblock %}
-        {% block footer %}
-            <footer style="margin-top: 10%">
-                <section style="background-color: black; margin-top: 30%;position: fixed;
+</head>
+<body style="margin: 0">
+<nav style="background-color: #9F5540; text-decoration: none; ">
+    <li>
+        <a href="http://127.0.0.1:8001">
+            <button style="background-color: white;margin-top: 2%; margin-bottom: 2%; width: 10%; padding-top: 1%;padding-bottom: 1%">
+                Logo
+            </button>
+        </a>
+        <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('index') }}">ACCUEIL</a>
+        {% if is_granted('ROLE_OWNER') %}
+            <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('residence') }}">BIENS</a>
+            <a style="color: white; margin-left: 5%; text-decoration: none"
+               href="{{ path('tenant-list') }}">LOCATAIRES</a>
+            <a style="color: white; margin-left: 5%; text-decoration: none" href="{{ path('representative') }}">MANDATAIRES</a>
+        {% endif %}
+        {% if is_granted('ROLE_TENANT') %}
+
+        {% endif %}
+        {% if is_granted('ROLE_REPRESENTATIVE') %}
+            <a style="color: white; margin-left: 5%; text-decoration: none"
+               href="{{ path('residenceId' , {'id' : app.user.id}) }}">BIENS</a>
+{#            <a style="color: white; margin-left: 5%; text-decoration: none"#}
+{#               href="{{ path('editrepresentative', {'id': app.user.id}) }}">MANDATAIRES</a>#}
+        {% endif %}
+        <a style="color: white; margin-left: 25%; text-decoration: none" href="{{ path('profil') }}"><i
+                    class="fas fa-user-circle"></i>MON PROFIL</a>
+        <a style="color: white;margin-left: 3%; text-decoration: none" href="/logout"><i
+                    class="fa-solid fa-code"></i></a>
+    </li>
+</nav>
+{% block body %}{% endblock %}
+{% block footer %}
+    <footer style="margin-top: 10%">
+        <section style="background-color: black; margin-top: 30%;position: fixed;
  bottom: 0;
   left: 0;
   right: 0;">
-                    <p style="float: right; color: #FFFFFF;margin-right: 3%">version 1.0</p>
-                    <p style="color: #FFFFFF; margin-left: 5%">Gestion locative</p>
-                    <p style="color: #FFFFFF; margin-left: 5%">Contact téléphone : 06 06 06 06 06 </p>
-                    <p style="color: #FFFFFF; margin-left: 5%">Contact email : contact@gestionlocative.fr</p>
-                </section>
-            </footer>
-        {% endblock %}
-    </body>
+            <p style="float: right; color: #FFFFFF;margin-right: 3%">version 1.0</p>
+            <p style="color: #FFFFFF; margin-left: 5%">Gestion locative</p>
+            <p style="color: #FFFFFF; margin-left: 5%">Contact téléphone : 06 06 06 06 06 </p>
+            <p style="color: #FFFFFF; margin-left: 5%">Contact email : contact@gestionlocative.fr</p>
+        </section>
+    </footer>
+{% endblock %}
+</body>
 </html>

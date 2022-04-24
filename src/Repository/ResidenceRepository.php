@@ -24,8 +24,8 @@ class ResidenceRepository extends ServiceEntityRepository
     public function GetResidence($value): array
     {
         return $this->createQueryBuilder('r')
-            ->innerJoin('r.representative', 'u')
-            ->andWhere('r.representative = :val')
+            ->innerJoin('r.Representative', 'u')
+            ->andWhere('r.Representative = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getResult();

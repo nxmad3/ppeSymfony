@@ -32,17 +32,15 @@ class Residence
     #[ORM\Column(type: 'string', length: 255)]
     private $inventory_file;
 
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ownedResidences')]
-    #[ORM\JoinColumn(name: "owner_id", referencedColumnName: "id", nullable: true)]
-    private $owner;
-
-    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'representativeResidences')]
-    #[ORM\JoinColumn(name: "representative_id", referencedColumnName: "id", nullable: true)]
-    private $representative;
-
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $file;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ResidenceOwner')]
+    private $Owner;
+
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'ResidenceRepresentative')]
+    private $Representative;
 
     public function getId(): ?int
     {
@@ -121,46 +119,6 @@ class Residence
         return $this;
     }
 
-    public function getOwnerId(): ?User
-    {
-        return $this->owner_id;
-    }
-
-    public function setOwnerId(?User $owner): self
-    {
-        $this->owner_id = $owner;
-
-        return $this;
-    }
-
-    public function getRepresentativeId(): ?User
-    {
-        return $this->representative_id;
-    }
-
-    public function setRepresentativeId(?User $representative): self
-    {
-        $this->representative_id = $representative;
-
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRepresentative()
-    {
-        return $this->representative;
-    }
-
-    /**
-     * @param mixed $representative
-     */
-    public function setRepresentative($representative): void
-    {
-        $this->representative = $representative;
-    }
-
     public function getFile(): ?string
     {
         return $this->file;
@@ -173,20 +131,27 @@ class Residence
         return $this;
     }
 
-
-    /**
-     * @return mixed
-     */
-    public function getOwner()
+    public function getOwner(): ?User
     {
-        return $this->owner;
+        return $this->Owner;
     }
 
-    /**
-     * @param mixed $owner
-     */
-    public function setOwner($owner): void
+    public function setOwner(?User $Owner): self
     {
-        $this->owner = $owner;
+        $this->Owner = $Owner;
+
+        return $this;
+    }
+
+    public function getRepresentative(): ?User
+    {
+        return $this->Representative;
+    }
+
+    public function setRepresentative(?User $Representative): self
+    {
+        $this->Representative = $Representative;
+
+        return $this;
     }
 }

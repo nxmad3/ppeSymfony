@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Rent;
 use App\Entity\Residence;
+use App\Form\AddLocationFormType;
 use App\Form\CommentaireResidenceType;
 use App\Repository\RentRepository;
 use App\Entity\User;
@@ -39,12 +40,25 @@ class ResidenceController extends AbstractController
     public function index(): Response
     {
         if($this->getUser()){
-            $idResidences = $this->getDoctrine()->getRepository(Rent::class)->getIdResidences();
+            $idResidences = $this->getDoctrine()->getRepository(Residence::class)->findAll();
             $residences = $this->getDoctrine()->getRepository(Rent::class)->GetRent($idResidences);
-            $nb = $this->getDoctrine()->getRepository(Rent::class)->GetTotalResidence(date('Y-m-d'));
             return $this->render('residence/index.html.twig',[
                 'residences'=>$residences,
-                'nb' => $nb,
+                'nb' => $idResidences
+
+            ]);
+        }
+        return $this->render('login/index.html.twig');
+    }
+    #[Route('/residence/{id}', name: 'residenceId') , security("is_granted('ROLE_OWNER') or is_granted('ROLE_REPRESENTATIVE')")]
+    public function residenceint(int $id): Response
+    {
+        if($this->getUser()){
+            $idResidences = $this->getDoctrine()->getRepository(Residence::class)->GetResidence($id);
+            $residences = $this->getDoctrine()->getRepository(Rent::class)->GetRent($idResidences);
+            return $this->render('residence/index.html.twig',[
+                'residences'=>$residences,
+                'nb' => $idResidences
 
             ]);
         }
@@ -54,6 +68,8 @@ class ResidenceController extends AbstractController
     public function editresidence(int $id, Request $request,SluggerInterface $slugger, KernelInterface $appKernel,EntityManagerInterface $entityManager): Response
     {
         $residence = $this->getDoctrine()->getRepository(Residence::class)->find($id);
+        $rent = $this->getDoctrine()->getRepository(Rent::class)->findBy(['residence'=>$residence]);
+        $LastRent = $this->getDoctrine()->getRepository(Rent::class)->findBy(['residence'=>$residence],['departure_date'=>'DESC'],1);
         $form = $this->createForm(EditResidenceType::class, $residence);
         $form->handleRequest($request);
 
@@ -112,6 +128,8 @@ class ResidenceController extends AbstractController
         return $this->renderForm('residence/editresidence.html.twig', [
             'form' => $form,
             'residence'=>$residence,
+            'rents'=>$rent,
+            'LastRent'=>$LastRent,
         ]);
     }
     #[Route('/addResidence', name: 'addResidence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER')")]
@@ -123,6 +141,10 @@ class ResidenceController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form->get('image')->getData();
 
+            if($this->getUser()->getRoles()[0] == "ROLE_REPRESENTATIVE")
+            {
+                $residence->setRepresentative($this->getUser());
+            }
             if ($file)
             {
                 $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
@@ -178,7 +200,7 @@ class ResidenceController extends AbstractController
     #[Route('/infoResidence/{id}', name: 'infoResidence') , security("is_granted('ROLE_REPRESENTATIVE') or is_granted('ROLE_OWNER') or is_granted('ROLE_TENANT')")]
     public function deleteResidence(int $id, Request $request,SluggerInterface $slugger, KernelInterface $appKernel,EntityManagerInterface $entityManager): Response
     {
-        $residence = $this->getDoctrine()->getRepository(Rent::class)->findAllRentsById(2)  ;
+        $residence = $this->getDoctrine()->getRepository(Rent::class)->findAllRentsById($id);
         $form = $this->createForm(CommentaireResidenceType::class, $residence);
         $form->handleRequest($request);
         $entityManager->persist($residence);
@@ -186,6 +208,29 @@ class ResidenceController extends AbstractController
         return $this->renderForm('residence/info.html.twig', [
             'form' => $form,
             'residence' => $residence,
+        ]);
+    }
+
+    #[Route('/addLocation/{id}', name: 'addLocation'), security(" is_granted('ROLE_OWNER') or is_granted('ROLE_TENANT') or is_granted('ROLE_REPRESENTATIVE')")]
+    public function addTenantLocation(int $id ,Request $request): Response
+    {
+        $rent = new Rent();
+        $form = $this->createForm(AddLocationFormType::class, $rent);
+        $form->handleRequest($request);
+        $rent->setTenant($this->getUser());
+        $rent->setResidence($this->getDoctrine()->getRepository(Residence::class)->find($id));
+        $entityManager = $this->getDoctrine()->getManager();
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($rent);
+            $entityManager->flush();
+            $this->addFlash('success', 'Le locataire a bien ete ajouter');
+        }
+        else {
+            $this->addFlash('error', 'Le locataire n\'a pas ete ajouter');
+        }
+        return $this->renderForm('residence/addLocation.html.twig', [
+            'form' => $form,
         ]);
     }
 }

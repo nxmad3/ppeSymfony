@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Rent;
 use App\Entity\Residence;
 use App\Entity\User;
+use App\Form\AddLocationTenantFormType;
 use App\Form\AddRepresentativeForm;
 use App\Form\AddTenantFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -19,11 +20,13 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-use Knp\Component\Pager\PaginatorInterface; // Nous appelons le bundle KNP Paginator
+use Knp\Component\Pager\PaginatorInterface;
+
+// Nous appelons le bundle KNP Paginator
 
 class RepresentativeController extends AbstractController
 {
-    #[Route('/representative', name: 'representative') ,security( "is_granted('ROLE_OWNER')" )]
+    #[Route('/representative', name: 'representative'), security("is_granted('ROLE_OWNER')")]
     public function index(): Response
     {
         if ($this->getUser()) {
@@ -49,24 +52,26 @@ class RepresentativeController extends AbstractController
         return $this->render('login/index.html.twig');
     }
 
-        #[Route('/editrepresentative/{id}', name: 'editrepresentative'), security("is_granted('ROLE_OWNER')")]
-    public function editrepresentative(int $id, Request $request): Response
-    {$user = $this->getDoctrine()->getRepository(User::class)->find($id);
+    #[Route('/editrepresentative/{id}', name: 'editrepresentative'), security("is_granted('ROLE_OWNER')")]
+    public function editRepresentative(int $id, Request $request): Response
+    {
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $form = $this->createForm(EditRepresentativeFormType::class, $user);
         $form->handleRequest($request);
         $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($user);
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->persist($user);
             $entityManager->flush();
+            $this->addFlash('success', 'modification réussie');
         }
         return $this->renderForm('representative/edit.html.twig', [
             'form' => $form,
-            'user'=>$user,
+            'user' => $user,
         ]);
     }
 
-    #[Route('/addRepresentative', name: 'addRepresentative' ), security(" is_granted('ROLE_OWNER')")]
-    public function addRepresentative(Request $request,MailerInterface $mailer,UserPasswordHasherInterface $hasher): Response
+    #[Route('/addRepresentative', name: 'addRepresentative'), security(" is_granted('ROLE_OWNER')")]
+    public function addRepresentative(Request $request, MailerInterface $mailer, UserPasswordHasherInterface $hasher): Response
     {
         $user = new User();
         $form = $this->createForm(AddRepresentativeForm::class, $user);
@@ -102,5 +107,4 @@ class RepresentativeController extends AbstractController
             'form' => $form->createView()
         ]);
     }
-
 }

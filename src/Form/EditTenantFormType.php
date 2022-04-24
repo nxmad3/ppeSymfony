@@ -16,15 +16,15 @@ class EditTenantFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name',TextType::class,['label' => 'Nom'])
-            ->add('lastname',TextType::class,['label' => 'Prénom'])
-            ->add('email', EmailType::class,['label' => 'Email'])
-            ->add('name', TextType::class,['label' => 'nom'])
+            ->add('name', TextType::class, ['label' => 'Nom'])
+            ->add('lastname', TextType::class, ['label' => 'Prénom'])
+            ->add('email', EmailType::class, ['label' => 'Email'])
+            ->add('name', TextType::class, ['label' => 'nom'])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe sont different',
                 'options' => ['attr' => ['class' => 'password-field']],
-                'first_options'  => ['label' => 'Mot de passe'],
+                'first_options' => ['label' => 'Mot de passe'],
                 'second_options' => ['label' => 'Confirmation du mot de passe'],
             ]);
 
@@ -35,6 +35,6 @@ class EditTenantFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => User::class,
             'label' => false,
-            ]);
+        ]);
     }
 }

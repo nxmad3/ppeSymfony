@@ -39,16 +39,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string')]
     private $lastName;
 
-    #[ORM\OneToMany(mappedBy: 'representative', targetEntity: Residence::class, cascade: ['persist'])]
-    private Collection $representativeResidences;
+    #[ORM\OneToMany(mappedBy: 'Owner', targetEntity: Residence::class)]
+    private $ResidenceOwner;
 
-    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Residence::class, cascade: ['persist'])]
-    private Collection $ownedResidences;
+    #[ORM\OneToMany(mappedBy: 'Represntative', targetEntity: Residence::class)]
+    private $ResidenceRepresentative;
+
+    #[ORM\OneToMany(mappedBy: 'Representative', targetEntity: Rent::class)]
+    private $Representative;
+
 
     public function __construct()
     {
         $this->representativeResidences = new ArrayCollection();
         $this->ownedResidences = new ArrayCollection();
+        $this->ResidenceOwner = new ArrayCollection();
+        $this->ResidenceRepresentative = new ArrayCollection();
+        $this->rents = new ArrayCollection();
+        $this->Representative = new ArrayCollection();
     }
 
 
@@ -179,36 +187,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @return mixed
+     * @return Collection<int, Residence>
      */
-    public function getRepresentativeResidences(): Collection
+    public function getResidenceOwner(): Collection
     {
-        return $this->representativeResidences;
+        return $this->ResidenceOwner;
+    }
+
+    public function addResidenceOwner(Residence $residenceOwner): self
+    {
+        if (!$this->ResidenceOwner->contains($residenceOwner)) {
+            $this->ResidenceOwner[] = $residenceOwner;
+            $residenceOwner->setOwner($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResidenceOwner(Residence $residenceOwner): self
+    {
+        if ($this->ResidenceOwner->removeElement($residenceOwner)) {
+            // set the owning side to null (unless already changed)
+            if ($residenceOwner->getOwner() === $this) {
+                $residenceOwner->setOwner(null);
+            }
+        }
+
+        return $this;
     }
 
     /**
-     * @param mixed $representativeResidences
+     * @return Collection<int, Residence>
      */
-    public function setRepresentativeResidences(Collection $representativeResidences): void
+    public function getResidenceRepresentative(): Collection
     {
-        $this->representativeResidences = $representativeResidences;
+        return $this->ResidenceRepresentative;
+    }
+
+    public function addResidenceRepresentative(Residence $residenceRepresentative): self
+    {
+        if (!$this->ResidenceRepresentative->contains($residenceRepresentative)) {
+            $this->ResidenceRepresentative[] = $residenceRepresentative;
+            $residenceRepresentative->setRepresntative($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResidenceRepresentative(Residence $residenceRepresentative): self
+    {
+        if ($this->ResidenceRepresentative->removeElement($residenceRepresentative)) {
+            // set the owning side to null (unless already changed)
+            if ($residenceRepresentative->getRepresntative() === $this) {
+                $residenceRepresentative->setRepresntative(null);
+            }
+        }
+
+        return $this;
     }
 
     /**
-     * @return ArrayCollection
+     * @return Collection<int, Rent>
      */
-    public function getOwnedResidences(): Collection
+    public function getRepresentative(): Collection
     {
-        return $this->ownedResidences;
+        return $this->Representative;
     }
 
-    /**
-     * @param ArrayCollection $ownedResidences
-     */
-    public function setOwnedResidences(ArrayCollection $ownedResidences): void
+    public function addRepresentative(Rent $representative): self
     {
-        $this->ownedResidences = $ownedResidences;
+        if (!$this->Representative->contains($representative)) {
+            $this->Representative[] = $representative;
+            $representative->setRepresentative($this);
+        }
+
+        return $this;
     }
+
+    public function removeRepresentative(Rent $representative): self
+    {
+        if ($this->Representative->removeElement($representative)) {
+            // set the owning side to null (unless already changed)
+            if ($representative->getRepresentative() === $this) {
+                $representative->setRepresentative(null);
+            }
+        }
+
+        return $this;
+    }
+
+
 
 
 }
