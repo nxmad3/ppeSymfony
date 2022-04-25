@@ -20,6 +20,7 @@ class EditTenantFormType extends AbstractType
             ->add('lastname', TextType::class, ['label' => 'Prénom'])
             ->add('email', EmailType::class, ['label' => 'Email'])
             ->add('name', TextType::class, ['label' => 'nom'])
+            ->add('address',AddressFormType::class)
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe sont different',

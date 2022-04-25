@@ -86,6 +86,7 @@ class  TenantController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->persist($user);
 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($user);
             $email = (new TemplatedEmail())
