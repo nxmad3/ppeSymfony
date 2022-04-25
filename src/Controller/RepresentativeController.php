@@ -59,10 +59,10 @@ class RepresentativeController extends AbstractController
         $form = $this->createForm(EditRepresentativeFormType::class, $user);
         $form->handleRequest($request);
         $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->persist($user);
+
         if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($user);
             $entityManager->flush();
-            $this->addFlash('success', 'modification réussie');
         }
         return $this->renderForm('representative/edit.html.twig', [
             'form' => $form,
@@ -76,7 +76,7 @@ class RepresentativeController extends AbstractController
         $user = new User();
         $form = $this->createForm(AddRepresentativeForm::class, $user);
         $form->handleRequest($request);
-        $user->setRoles(array("representative"));
+        $user->setRoles(array("ROLE_REPRESENTATIVE"));
         $faker = Factory::create('fr_FR');
         $user->setPassword($faker->password());
         $entityManager = $this->getDoctrine()->getManager();

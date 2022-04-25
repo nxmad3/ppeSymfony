@@ -78,7 +78,7 @@ class  TenantController extends AbstractController
         $user = new User();
         $form = $this->createForm(AddTenantFormType::class, $user);
         $form->handleRequest($request);
-        $user->setRoles(array("tenant"));
+        $user->setRoles(array("ROLE_TENANT"));
         $faker = Factory::create('fr_FR');
         $user->setPassword($faker->password());
         $entityManager = $this->getDoctrine()->getManager();
