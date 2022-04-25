@@ -6,6 +6,7 @@ use App\Entity\Rent;
 use App\Entity\Residence;
 use App\Entity\User;
 use App\Form\AddLocationTenantFormType;
+use App\Form\AddressFormType;
 use App\Form\AddTenantFormType;
 use App\Form\EditOwnerForm;
 use App\Controller\Faker;

@@ -48,6 +48,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'Representative', targetEntity: Rent::class)]
     private $Representative;
 
+    #[ORM\OneToOne(mappedBy: 'tenant', targetEntity: Address::class, cascade: ['persist', 'remove'])]
+    private $address;
+
 
     public function __construct()
     {
@@ -272,6 +275,28 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $representative->setRepresentative(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAddress(): ?Address
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?Address $address): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($address === null && $this->address !== null) {
+            $this->address->setTenant(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($address !== null && $address->getTenant() !== $this) {
+            $address->setTenant($this);
+        }
+
+        $this->address = $address;
 
         return $this;
     }

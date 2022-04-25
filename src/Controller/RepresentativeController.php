@@ -7,7 +7,7 @@ use App\Entity\Residence;
 use App\Entity\User;
 use App\Form\AddLocationTenantFormType;
 use App\Form\AddRepresentativeForm;
-use App\Form\AddTenantFormType;
+use App\Form\AddressFormType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use App\Form\EditOwnerFormType;
 use App\Form\EditRepresentativeFormType;

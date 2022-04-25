@@ -20,27 +20,25 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class AddTenantFormType extends AbstractType
+class AddressFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, ['required' => true,'label' => 'Nom','class' => 'required'])
-            ->add('lastname', TextType::class, ['label' => 'Prénom'])
-            ->add('email', EmailType::class, ['label' => 'Email'])
-            ->add('name', TextType::class, ['label' => 'Nom'])
-            ->add('address', AddressFormType::class )
-                ->add('isVerified', HiddenType::class, [
-                    "data" => 1
-                ]);
-
+            ->add('address',TextType::class,['required' => true,'label'=>'Adresse'])
+            ->add('addressComplement',TextType::class,['required' => false,'label'=>'Complément d\'adresse'])
+            ->add('postalCode',TextType::class,['required' => true,'label'=>'Code postal'])
+            ->add('city',TextType::class,['required' => true,'label'=>'Ville'])
+            ->add('phone',TextType::class,['required' => true,'label'=>'Téléphone','attr' => ['maxlength' => 10]])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Address::class,
             'label' => false,
+            'required' => false,
         ]);
     }
 }
