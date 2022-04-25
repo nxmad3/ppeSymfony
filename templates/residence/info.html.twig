@@ -5,6 +5,21 @@
     <div>
         {{ form_row(form) }}
         <button class="btn btn-success" style="margin-top: 3%" type="submit">Ajouter</button>
+
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="/uploads/{{ residence.residence.file }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ residence.residence.name }}</h5>
+                        <p class="card-text">Locataire {{ residence.tenant.lastName }} {{ residence.tenant.name }}</p>
+                        <p>Télécharger <a href="{{ residence.residence.inventoryFile }}" download="{{ residence.residence.inventoryFile }}"> {{ residence.residence.inventoryFile }}</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     {% set comfirme = false %}
     <div class="card text-white bg-success mb-3 float-start ms-2 mt-2" style="max-width: 18rem;">

@@ -19,14 +19,7 @@ class EditRepresentativeFormType extends AbstractType
         $builder
             ->add('name', TextType::class, ['label' => 'Nom'])
             ->add('lastname', TextType::class, ['label' => 'Prénom'])
-            ->add('email', EmailType::class, ['label' => 'Email'])
-            ->add('residenceOwner', EntityType::class, [
-                'class' => Residence::class,
-                'label' => 'Location gérées',
-                'choice_label' => 'name',
-                'multiple' => true,
-                'expanded'=>true,
-            ]);
+            ->add('email', EmailType::class, ['label' => 'Email']);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
