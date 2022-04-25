@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+    <script language="javascript"
+            src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <script language="javascript">
+        $(document).ready(function () {
+            $("#loadstudent").ready(function (event) {
+                $.ajax({
+                    url: '/testAjax',
+                    type: 'POST',
+                    dataType: 'json',
+                    async: true,
+                    success: function (data, status) {
+                        var e = $('<tr><th>Name</th><th>Last Name</th></tr>');
+                        $('#arrival').html('');
+                        $('#arrival').append(e);
+                        for (i = 0; i < data.length; i++) {
+                            student = data[i];
+                            var e = $('<tr><td id = "residence"></td></tr>');
+                            $('#residence', e).html(student['residence']);
+                            $('#residences').append(e);
+                        }
+                    },
+                    error: function (xhr, textStatus, errorThrown) {
+                        alert('Ajax request failed.');
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .table {
+            border-collapse: collapse;
+        }
+
+        .table th, td {
+            border-bottom: 1px solid #ddd;
+            width: 250px;
+            text-align: left;
+            align: left;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tbody id="residences"></tbody>
+    </table>
+{% endblock %}
