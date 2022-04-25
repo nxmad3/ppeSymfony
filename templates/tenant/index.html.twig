@@ -9,6 +9,11 @@
             <th scope="col">#</th>
             <th scope="col">nom</th>
             <th scope="col">prenom</th>
+            <th scope="col">adresse</th>
+            <th scope="col">complément d'adresse</th>
+            <th scope="col">code postal</th>
+            <th scope="col">ville</th>
+            <th scope="col">telephone</th>
             <th scope="col">action</th>
         </tr>
         </thead>
@@ -18,6 +23,19 @@
                 <th scope="row">{{ loop.index }}</th>
                 <td><a href="/location-list/{{ user.id }}">{{ user.lastName }}</a></td>
                 <td>{{ user.name }}</td>
+                {% if user.address != null %}
+                    <td>{{ user.address.address }}</td>
+                    <td>{{ user.address.addressComplement }}</td>
+                    <td>{{ user.address.postalCode }}</td>
+                    <td>{{ user.address.city }}</td>
+                    <td>{{ user.address.phone }}</td>
+              {% else %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                {% endif %}
                 <td><a type="button"href="/edittenant/{{ user.id }}">Mettre à jour les données</a></td>
             </tr>
         {% endfor %}

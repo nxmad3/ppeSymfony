@@ -38,7 +38,6 @@ class AddressFormType extends AbstractType
         $resolver->setDefaults([
             'data_class' => Address::class,
             'label' => false,
-            'required' => false,
         ]);
     }
 }

@@ -11,6 +11,7 @@ use App\Form\AddTenantFormType;
 use App\Form\EditOwnerForm;
 use App\Controller\Faker;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Exception\InvalidArgumentException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Faker\Factory;
@@ -105,6 +106,9 @@ class  TenantController extends AbstractController
         }
         if ($form->isSubmitted() && $form->isValid()) {
             $this->addFlash('success', 'Le locataire a bien ete ajouter');
+        }
+        if(InvalidArgumentException::class){
+            $this->addFlash('error', 'Le locataire n\'a pas ete ajouter');
         }
         return $this->render('tenant/add.html.twig', [
             'form' => $form->createView()
