@@ -1,3 +1,5 @@
+# Pause jusqu'au 1 juillet :)
+
 # ppeSymfony
 
 # <ins>[[PPE-SYMFONY](https://github.com/nxmad3/ppeSymfony.git)]
