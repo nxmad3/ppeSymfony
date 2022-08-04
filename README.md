@@ -1,4 +1,4 @@
-# Pause jusqu'au 1 juillet :)
+# Pause jusqu'au 20 aout :)
 
 # ppeSymfony
 
